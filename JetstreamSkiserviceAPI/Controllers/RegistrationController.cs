@@ -33,5 +33,15 @@ namespace JetstreamServiceAPI.Controllers
 
             return registration;
         }
+
+        // POST action
+        [HttpPost]
+        public IActionResult Create(Registration registration)
+        {
+            RegistrationService.Add(registration);
+
+            // fix this
+            return CreatedAtAction(nameof(Create), new { id = registration.id }, registration);
+        }
     }
 }
