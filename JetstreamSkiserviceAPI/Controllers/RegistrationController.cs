@@ -20,5 +20,18 @@ namespace JetstreamServiceAPI.Controllers
         [HttpGet]
         public ActionResult<List<Registration>> GetAll() =>
         RegistrationService.GetAll();
+
+        // GET by Id action
+        [HttpGet("{id}")]
+        public ActionResult<Registration> Get(int id)
+        {
+            _logger.LogError("This is an error.");
+            var registration = RegistrationService.Get(id);
+
+            if (registration == null)
+                return NotFound();
+
+            return registration;
+        }
     }
 }

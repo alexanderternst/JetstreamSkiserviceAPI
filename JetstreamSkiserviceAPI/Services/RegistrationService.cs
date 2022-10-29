@@ -12,9 +12,6 @@ namespace JetstreamServiceAPI.Services
 
         static RegistrationService()
         {
-            //string json = File.ReadAllText("registration.json");
-            //registrations = JsonConvert.DeserializeObject<List<Registration>>(json);
-
             var contextOptions = new DbContextOptionsBuilder<RegistrationContext>()
             .UseSqlServer(@"Server=ALEXANDERPC;Database=Registration;Trusted_Connection=True")
             .Options;
@@ -23,7 +20,8 @@ namespace JetstreamServiceAPI.Services
             {
                 foreach (var registration in context.Registrations)
                 {
-                    registrations.Add(new Registration(registration.name,
+                    registrations.Add(new Registration(registration.id,
+                                           registration.name,
                                            registration.email,
                                            registration.phone,
                                            registration.priority,
@@ -38,6 +36,8 @@ namespace JetstreamServiceAPI.Services
         }
 
         public static List<Registration> GetAll() => registrations;
+
+        public static Registration? Get(int id) => registrations.FirstOrDefault(p => p.id == id);
 
     }
 }

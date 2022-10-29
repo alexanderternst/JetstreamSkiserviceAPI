@@ -33,8 +33,9 @@ namespace EFCoreCodeFirst.Models
 
         }
 
-        public Registration(string Name, string Email, int Phone, string Priority, string Service, DateTime Create_date, DateTime Pickup_date, string Status)
+        public Registration(int Id, string Name, string Email, int Phone, string Priority, string Service, DateTime Create_date, DateTime Pickup_date, string Status)
         {
+            id = Id;
             name = Name;
             email = Email;
             phone = Phone;
