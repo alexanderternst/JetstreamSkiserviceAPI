@@ -43,5 +43,34 @@ namespace JetstreamServiceAPI.Controllers
             // fix this
             return CreatedAtAction(nameof(Create), new { id = registration.id }, registration);
         }
+
+        // DELETE action
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var registration = RegistrationService.Get(id);
+
+            if (registration is null)
+                return NotFound();
+
+            RegistrationService.Delete(id);
+
+            return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, Registration registration)
+        {
+            if (id != registration.id)
+                registration.id = id;
+
+            var existingRegi = RegistrationService.Get(id);
+            if (existingRegi is null)
+                return NotFound();
+
+            RegistrationService.Update(id, registration);
+
+            return NoContent();
+        }
     }
 }

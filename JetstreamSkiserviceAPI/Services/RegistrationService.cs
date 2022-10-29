@@ -78,5 +78,71 @@ namespace JetstreamServiceAPI.Services
                 }
             }
         }
+
+        public static void Delete(int Id)
+        {
+            var delete = new Registration { id = Id };
+
+            var contextOptions = new DbContextOptionsBuilder<RegistrationContext>()
+            .UseSqlServer(@"Server=ALEXANDERPC;Database=Registration;Trusted_Connection=True")
+            .Options;
+
+            using (var context = new RegistrationContext(contextOptions))
+            {
+                context.Attach(delete);
+                context.Remove(delete);
+                context.SaveChanges();
+
+                foreach (var regi in context.Registrations)
+                {
+                    registrations.Add(new Registration(regi.id,
+                                           regi.name,
+                                           regi.email,
+                                           regi.phone,
+                                           regi.priority,
+                                           regi.service,
+                                           regi.create_date,
+                                           regi.pickup_date,
+                                           regi.status));
+
+                }
+            }
+        }
+
+        public static void Update(int Id,Registration registration)
+        {
+            var contextOptions = new DbContextOptionsBuilder<RegistrationContext>()
+            .UseSqlServer(@"Server=ALEXANDERPC;Database=Registration;Trusted_Connection=True")
+            .Options;
+
+            using (var context = new RegistrationContext(contextOptions))
+            {
+                var regi = context.Registrations.First(a => a.id == Id);
+                regi.name = registration.name;
+                regi.email = registration.email;
+                regi.phone = registration.phone;
+                regi.priority = registration.priority;
+                regi.service = registration.service;
+                regi.create_date = registration.create_date;
+                regi.pickup_date = registration.pickup_date;
+                regi.status = registration.status;
+
+                context.SaveChanges();
+
+                foreach (var regi2 in context.Registrations)
+                {
+                    registrations.Add(new Registration(regi2.id,
+                                           regi2.name,
+                                           regi2.email,
+                                           regi2.phone,
+                                           regi2.priority,
+                                           regi2.service,
+                                           regi2.create_date,
+                                           regi2.pickup_date,
+                                           regi2.status));
+
+                }
+            }
+        }
     }
 }
