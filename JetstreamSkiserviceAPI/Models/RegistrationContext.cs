@@ -1,8 +1,6 @@
-﻿using EFCoreCodeFirst.Models;
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace JetstreamServiceAPI.Models
+namespace JetstreamSkiserviceAPI.Models
 {
     //public class Rootobject
     //{

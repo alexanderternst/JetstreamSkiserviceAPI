@@ -1,32 +1,32 @@
-﻿using EFCoreCodeFirst.Models;
-using JetstreamServiceAPI.Models;
-using JetstreamServiceAPI.Services;
+﻿using JetstreamSkiserviceAPI.Models;
+using JetstreamSkiserviceAPI.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
-namespace JetstreamServiceAPI.Controllers
+namespace JetstreamSkiserviceAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class RegistrationController : ControllerBase
     {
+        private IRegistrationService _registrationService;
         private readonly ILogger<RegistrationController> _logger;
 
-        public RegistrationController(ILogger<RegistrationController> logger)
+        public RegistrationController(IRegistrationService registration, ILogger<RegistrationController> logger)
         {
+            _registrationService = registration;
             _logger = logger;
         }
 
         [HttpGet]
         public ActionResult<List<Registration>> GetAll() =>
-        RegistrationService.GetAll();
+        _registrationService.GetAll();
 
         // GET by Id action
         [HttpGet("{id}")]
         public ActionResult<Registration> Get(int id)
         {
             _logger.LogError("This is an error.");
-            var registration = RegistrationService.Get(id);
+            var registration = _registrationService.Get(id);
 
             if (registration == null)
                 return NotFound();
@@ -38,9 +38,7 @@ namespace JetstreamServiceAPI.Controllers
         [HttpPost]
         public IActionResult Create(Registration registration)
         {
-            RegistrationService.Add(registration);
-
-            // fix this
+            _registrationService.Add(registration);
             return CreatedAtAction(nameof(Create), new { id = registration.id }, registration);
         }
 
@@ -48,27 +46,30 @@ namespace JetstreamServiceAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var registration = RegistrationService.Get(id);
+            var registration = _registrationService.Get(id);
 
             if (registration is null)
                 return NotFound();
 
-            RegistrationService.Delete(id);
+            _registrationService.Delete(id);
 
             return NoContent();
         }
 
+        // PUT action
         [HttpPut("{id}")]
         public IActionResult Update(int id, Registration registration)
         {
+            //if (id != registration.id)
+            //    return BadRequest();
             if (id != registration.id)
                 registration.id = id;
 
-            var existingRegi = RegistrationService.Get(id);
-            if (existingRegi is null)
+            var existingPizza = _registrationService.Get(id);
+            if (existingPizza is null)
                 return NotFound();
 
-            RegistrationService.Update(id, registration);
+            _registrationService.Update(id, registration);
 
             return NoContent();
         }

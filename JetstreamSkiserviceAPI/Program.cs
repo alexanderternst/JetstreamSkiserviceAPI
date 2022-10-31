@@ -1,12 +1,7 @@
-using JetstreamServiceAPI.Models;
+using JetstreamSkiserviceAPI.Models;
+using JetstreamSkiserviceAPI.Services;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
-
-
-var contextOptions = new DbContextOptionsBuilder<RegistrationContext>()
-            .UseSqlServer(@"Server=ALEXANDERPC;Database=Registration;Trusted_Connection=True")
-            .Options;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +15,12 @@ var loggerFromSettings = new LoggerConfiguration()
 
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(loggerFromSettings);
+
+// configure DI for application services
+// alle services die wir wollen registrieren
+// AddScoped, AddSingleton, AddTransient (wie viele instanzen, soll es von service geben)
+builder.Services.AddScoped<IRegistrationService, RegistrationServiceSQL>();
+builder.Services.AddControllers();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -1,19 +1,22 @@
-﻿using JetstreamServiceAPI.Models;
+﻿using JetstreamSkiserviceAPI;
 using System.Text.Json;
 using Newtonsoft.Json;
-using EFCoreCodeFirst.Models;
 using Microsoft.EntityFrameworkCore;
+using JetstreamSkiserviceAPI.Models;
 
-namespace JetstreamServiceAPI.Services
+namespace JetstreamSkiserviceAPI.Services
 {
-    public class RegistrationService
+    public class RegistrationServiceSQL : IRegistrationService
     {
         static List<Registration> registrations { get; set; } = new List<Registration>();
+        static string Storage { get; set; }
 
-        static RegistrationService()
+        public RegistrationServiceSQL(IConfiguration config)
         {
+            Storage = config["Storage"];
+
             var contextOptions = new DbContextOptionsBuilder<RegistrationContext>()
-            .UseSqlServer(@"Server=ALEXANDERPC;Database=Registration;Trusted_Connection=True")
+            .UseSqlServer($@"{Storage}")
             .Options;
 
             using (var context = new RegistrationContext(contextOptions))
@@ -23,15 +26,15 @@ namespace JetstreamServiceAPI.Services
 
         }
 
-        public static List<Registration> GetAll() => registrations;
+        public List<Registration> GetAll() => registrations;
 
-        public static Registration? Get(int id) => registrations.FirstOrDefault(p => p.id == id);
+        public Registration? Get(int id) => registrations.FirstOrDefault(p => p.id == id);
 
-        public static void Add(Registration registration)
+        public void Add(Registration registration)
         {
 
             var contextOptions = new DbContextOptionsBuilder<RegistrationContext>()
-            .UseSqlServer(@"Server=ALEXANDERPC;Database=Registration;Trusted_Connection=True")
+            .UseSqlServer($@"{Storage}")
             .Options;
 
             using (var context = new RegistrationContext(contextOptions))
@@ -43,12 +46,12 @@ namespace JetstreamServiceAPI.Services
             }
         }
 
-        public static void Delete(int Id)
+        public void Delete(int Id)
         {
             var delete = new Registration { id = Id };
 
             var contextOptions = new DbContextOptionsBuilder<RegistrationContext>()
-            .UseSqlServer(@"Server=ALEXANDERPC;Database=Registration;Trusted_Connection=True")
+            .UseSqlServer($@"{Storage}")
             .Options;
 
             using (var context = new RegistrationContext(contextOptions))
@@ -61,15 +64,18 @@ namespace JetstreamServiceAPI.Services
             }
         }
 
-        public static void Update(int Id,Registration registration)
+        public void Update(int Id, Registration registration)
         {
             var contextOptions = new DbContextOptionsBuilder<RegistrationContext>()
-            .UseSqlServer(@"Server=ALEXANDERPC;Database=Registration;Trusted_Connection=True")
+            .UseSqlServer($@"{Storage}")
             .Options;
 
             using (var context = new RegistrationContext(contextOptions))
             {
                 var regi = context.Registrations.First(a => a.id == Id);
+
+                //regi = registration;
+
                 regi.name = registration.name;
                 regi.email = registration.email;
                 regi.phone = registration.phone;
@@ -80,7 +86,7 @@ namespace JetstreamServiceAPI.Services
                 regi.status = registration.status;
 
                 context.SaveChanges();
-
+                
                 registrations = context.Registrations.ToList();
             }
         }

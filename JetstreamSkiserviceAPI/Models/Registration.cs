@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EFCoreCodeFirst.Models
+namespace JetstreamSkiserviceAPI.Models
 {
     public class Registration
     {
