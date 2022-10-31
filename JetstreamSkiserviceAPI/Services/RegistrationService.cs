@@ -18,19 +18,7 @@ namespace JetstreamServiceAPI.Services
 
             using (var context = new RegistrationContext(contextOptions))
             {
-                foreach (var registration in context.Registrations)
-                {
-                    registrations.Add(new Registration(registration.id,
-                                           registration.name,
-                                           registration.email,
-                                           registration.phone,
-                                           registration.priority,
-                                           registration.service,
-                                           registration.create_date,
-                                           registration.pickup_date,
-                                           registration.status));
-
-                }
+                registrations = context.Registrations.ToList();
             }
 
         }
@@ -48,34 +36,10 @@ namespace JetstreamServiceAPI.Services
 
             using (var context = new RegistrationContext(contextOptions))
             {
-                var regi = new Registration
-                {
-                    name = registration.name,
-                    email = registration.email,
-                    phone = registration.phone,
-                    priority = registration.priority,
-                    service = registration.service,
-                    create_date = registration.create_date,
-                    pickup_date = registration.pickup_date,
-                    status = registration.status
-
-                };
-                context.Add(regi);
+                context.Add(registration);
                 context.SaveChanges();
 
-                foreach (var regi2 in context.Registrations)
-                {
-                    registrations.Add(new Registration(regi2.id,
-                                           regi2.name,
-                                           regi2.email,
-                                           regi2.phone,
-                                           regi2.priority,
-                                           regi2.service,
-                                           regi2.create_date,
-                                           regi2.pickup_date,
-                                           regi2.status));
-
-                }
+                registrations = context.Registrations.ToList();
             }
         }
 
@@ -93,19 +57,7 @@ namespace JetstreamServiceAPI.Services
                 context.Remove(delete);
                 context.SaveChanges();
 
-                foreach (var regi in context.Registrations)
-                {
-                    registrations.Add(new Registration(regi.id,
-                                           regi.name,
-                                           regi.email,
-                                           regi.phone,
-                                           regi.priority,
-                                           regi.service,
-                                           regi.create_date,
-                                           regi.pickup_date,
-                                           regi.status));
-
-                }
+                registrations = context.Registrations.ToList();
             }
         }
 
@@ -129,19 +81,7 @@ namespace JetstreamServiceAPI.Services
 
                 context.SaveChanges();
 
-                foreach (var regi2 in context.Registrations)
-                {
-                    registrations.Add(new Registration(regi2.id,
-                                           regi2.name,
-                                           regi2.email,
-                                           regi2.phone,
-                                           regi2.priority,
-                                           regi2.service,
-                                           regi2.create_date,
-                                           regi2.pickup_date,
-                                           regi2.status));
-
-                }
+                registrations = context.Registrations.ToList();
             }
         }
     }
