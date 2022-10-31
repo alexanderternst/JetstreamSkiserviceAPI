@@ -8,87 +8,43 @@ namespace JetstreamSkiserviceAPI.Services
 {
     public class RegistrationServiceSQL : IRegistrationService
     {
-        static List<Registration> registrations { get; set; } = new List<Registration>();
-        static string Storage { get; set; }
+        private readonly RegistrationContext _dbContext;
 
-        public RegistrationServiceSQL(IConfiguration config)
+        public RegistrationServiceSQL(RegistrationContext dbContext)
         {
-            Storage = config["Storage"];
-
-            var contextOptions = new DbContextOptionsBuilder<RegistrationContext>()
-            .UseSqlServer($@"{Storage}")
-            .Options;
-
-            using (var context = new RegistrationContext(contextOptions))
-            {
-                registrations = context.Registrations.ToList();
-            }
-
+            _dbContext = dbContext;
         }
 
-        public List<Registration> GetAll() => registrations;
+        public IEnumerable<Registration> GetAll()
+        {
+            return _dbContext.Registrations.ToList();
+        }
 
-        public Registration? Get(int id) => registrations.FirstOrDefault(p => p.id == id);
+        public Registration? Get(int id)
+        {
+            return _dbContext.Registrations.Find(id);
+        }
 
         public void Add(Registration registration)
         {
-
-            var contextOptions = new DbContextOptionsBuilder<RegistrationContext>()
-            .UseSqlServer($@"{Storage}")
-            .Options;
-
-            using (var context = new RegistrationContext(contextOptions))
-            {
-                context.Add(registration);
-                context.SaveChanges();
-
-                registrations = context.Registrations.ToList();
-            }
+            _dbContext.Registrations.Add(registration);
+            _dbContext.SaveChanges();
         }
 
         public void Delete(int Id)
         {
-            var delete = new Registration { id = Id };
-
-            var contextOptions = new DbContextOptionsBuilder<RegistrationContext>()
-            .UseSqlServer($@"{Storage}")
-            .Options;
-
-            using (var context = new RegistrationContext(contextOptions))
+            var movie = _dbContext.Registrations.Find(Id);
+            if (movie != null)
             {
-                context.Attach(delete);
-                context.Remove(delete);
-                context.SaveChanges();
-
-                registrations = context.Registrations.ToList();
+                _dbContext.Registrations.Remove(movie);
+                _dbContext.SaveChanges();
             }
         }
 
-        public void Update(int Id, Registration registration)
+        public void Update(Registration registration)
         {
-            var contextOptions = new DbContextOptionsBuilder<RegistrationContext>()
-            .UseSqlServer($@"{Storage}")
-            .Options;
-
-            using (var context = new RegistrationContext(contextOptions))
-            {
-                var regi = context.Registrations.First(a => a.id == Id);
-
-                //regi = registration;
-
-                regi.name = registration.name;
-                regi.email = registration.email;
-                regi.phone = registration.phone;
-                regi.priority = registration.priority;
-                regi.service = registration.service;
-                regi.create_date = registration.create_date;
-                regi.pickup_date = registration.pickup_date;
-                regi.status = registration.status;
-
-                context.SaveChanges();
-                
-                registrations = context.Registrations.ToList();
-            }
+            _dbContext.Entry(registration).State = EntityState.Modified;
+            _dbContext.SaveChanges();
         }
     }
 }

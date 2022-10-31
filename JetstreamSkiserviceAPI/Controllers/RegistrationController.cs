@@ -1,4 +1,5 @@
-﻿using JetstreamSkiserviceAPI.Models;
+﻿using JetstreamSkiserviceAPI.DTO;
+using JetstreamSkiserviceAPI.Models;
 using JetstreamSkiserviceAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,58 +19,100 @@ namespace JetstreamSkiserviceAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Registration>> GetAll() =>
-        _registrationService.GetAll();
+        public IEnumerable<RegistrationDTO> GetAll()
+        {
+            List<Registration> registrations = _registrationService.GetAll().ToList();
+
+            // Zum kunden werden DTO Objekte gegeben
+            List<RegistrationDTO> result = new List<RegistrationDTO>();
+            registrations.ForEach(e => result.Add(new RegistrationDTO()
+            {
+                id = e.id,
+                name = e.name,
+                email = e.email,
+                phone = e.phone,
+                priority = e.priority,
+                service = e.service,
+                create_date = e.create_date,
+                pickup_date = e.pickup_date,
+                status = e.status
+            }));
+
+            return result;
+        }
 
         // GET by Id action
         [HttpGet("{id}")]
-        public ActionResult<Registration> Get(int id)
+        public ActionResult<RegistrationDTO> Get(int id)
         {
-            _logger.LogError("This is an error.");
-            var registration = _registrationService.Get(id);
-
-            if (registration == null)
+            Registration e = _registrationService.Get(id);
+            if (e == null)
                 return NotFound();
 
-            return registration;
+            return new RegistrationDTO()
+            {
+                id = e.id,
+                name = e.name,
+                email = e.email,
+                phone = e.phone,
+                priority = e.priority,
+                service = e.service,
+                create_date = e.create_date,
+                pickup_date = e.pickup_date,
+                status = e.status
+            };
         }
 
         // POST action
         [HttpPost]
-        public IActionResult Create(Registration registration)
+        public ActionResult<Registration> Create(RegistrationDTO registrationDTO)
         {
-            _registrationService.Add(registration);
-            return CreatedAtAction(nameof(Create), new { id = registration.id }, registration);
+            Registration newRegistration = new Registration()
+            {
+                id = registrationDTO.id,
+                name = registrationDTO.name,
+                email = registrationDTO.email,
+                phone = registrationDTO.phone,
+                priority = registrationDTO.priority,
+                service = registrationDTO.service,
+                create_date = registrationDTO.create_date,
+                pickup_date = registrationDTO.pickup_date,
+                status = registrationDTO.status
+            };
+
+            _registrationService.Add(newRegistration);
+
+            return CreatedAtAction(nameof(Create), new { id = newRegistration.id }, newRegistration);
         }
 
         // DELETE action
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public void Delete(int id)
         {
-            var registration = _registrationService.Get(id);
-
-            if (registration is null)
-                return NotFound();
-
             _registrationService.Delete(id);
-
-            return NoContent();
         }
 
         // PUT action
         [HttpPut("{id}")]
-        public IActionResult Update(int id, Registration registration)
+        public ActionResult Update(int id, Registration registration)
         {
             //if (id != registration.id)
-            //    return BadRequest();
-            if (id != registration.id)
-                registration.id = id;
+            //    registration.id = id;
 
-            var existingPizza = _registrationService.Get(id);
-            if (existingPizza is null)
-                return NotFound();
+            Registration e = _registrationService.Get(id);
+            if (e == null)
+                return BadRequest();
 
-            _registrationService.Update(id, registration);
+            e.name = registration.name;
+            e.email = registration.email;
+            e.phone = registration.phone;
+            e.priority = registration.priority;
+            e.service = registration.service;
+            e.create_date = registration.create_date;
+            e.pickup_date = registration.pickup_date;
+            e.status = registration.status;
+
+            _registrationService.Update(e);
 
             return NoContent();
         }

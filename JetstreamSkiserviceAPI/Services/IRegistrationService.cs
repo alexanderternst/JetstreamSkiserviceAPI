@@ -4,7 +4,7 @@ namespace JetstreamSkiserviceAPI.Services
 {
     public interface IRegistrationService
     {
-        List<Registration> GetAll();
+        IEnumerable<Registration> GetAll();
 
         Registration? Get(int id);
 
@@ -12,7 +12,7 @@ namespace JetstreamSkiserviceAPI.Services
 
         void Delete(int id);
 
-        void Update(int Id, Registration registration);
+        void Update(Registration registration);
 
     }
 }
