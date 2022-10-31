@@ -2,11 +2,6 @@
 
 namespace JetstreamSkiserviceAPI.Models
 {
-    //public class Rootobject
-    //{
-    //    public Registration[] Property1 { get; set; }
-    //}
-
     public class RegistrationContext : DbContext
     {
         public RegistrationContext()

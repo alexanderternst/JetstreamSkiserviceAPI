@@ -27,23 +27,5 @@ namespace JetstreamSkiserviceAPI.Models
 
         [StringLength(255)]
         public string status { get; set; }
-
-        public Registration()
-        {
-
-        }
-
-        public Registration(int Id, string Name, string Email, int Phone, string Priority, string Service, DateTime Create_date, DateTime Pickup_date, string Status)
-        {
-            id = Id;
-            name = Name;
-            email = Email;
-            phone = Phone;
-            priority = Priority;
-            service = Service;
-            create_date = Create_date;
-            pickup_date = Pickup_date;
-            status = Status;
-        }
     }
 }
