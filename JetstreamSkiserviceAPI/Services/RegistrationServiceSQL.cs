@@ -33,10 +33,10 @@ namespace JetstreamSkiserviceAPI.Services
 
         public void Delete(int Id)
         {
-            var movie = _dbContext.Registrations.Find(Id);
-            if (movie != null)
+            var registration = _dbContext.Registrations.Find(Id);
+            if (registration != null)
             {
-                _dbContext.Registrations.Remove(movie);
+                _dbContext.Registrations.Remove(registration);
                 _dbContext.SaveChanges();
             }
         }

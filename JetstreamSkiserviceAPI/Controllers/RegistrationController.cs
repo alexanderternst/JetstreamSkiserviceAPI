@@ -69,7 +69,6 @@ namespace JetstreamSkiserviceAPI.Controllers
         {
             Registration newRegistration = new Registration()
             {
-                id = registrationDTO.id,
                 name = registrationDTO.name,
                 email = registrationDTO.email,
                 phone = registrationDTO.phone,

@@ -20,7 +20,8 @@ namespace AspNetCoreWebApi6
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddDbContext<RegistrationContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("RegistrationDB")));
+            builder.Services.AddDbContext<RegistrationContext>(options => 
+                options.UseSqlServer(builder.Configuration.GetConnectionString("RegistrationDB")));
 
             // Seri Logger mit appsettings.json Konfiguration
             var loggerFromSettings = new LoggerConfiguration()
