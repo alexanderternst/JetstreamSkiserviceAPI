@@ -17,10 +17,12 @@ namespace JetstreamSkiserviceAPI.Models
 
         public DbSet<Registration> Registrations { get; set; }
 
+        public DbSet<Status> Status { get; set; }
+
         // Diese Methode braucht man schlussendlich nicht, dies ist nur zum kreieren der Datenbank
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer(@"Server=ALEXANDERPC;Database=Registration;Trusted_Connection=True");
-        //}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Server=ALEXANDERPC;Database=Registration;Trusted_Connection=True");
+        }
     }
 }

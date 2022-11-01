@@ -1,4 +1,5 @@
-﻿using JetstreamSkiserviceAPI.Models;
+﻿using JetstreamSkiserviceAPI.DTO;
+using JetstreamSkiserviceAPI.Models;
 
 namespace JetstreamSkiserviceAPI.Services
 {
@@ -8,7 +9,7 @@ namespace JetstreamSkiserviceAPI.Services
 
         Registration? Get(int id);
 
-        void Add(Registration registration);
+        void Add(RegistrationDTO registration);
 
         void Delete(int id);
 

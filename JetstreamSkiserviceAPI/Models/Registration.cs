@@ -25,7 +25,6 @@ namespace JetstreamSkiserviceAPI.Models
 
         public DateTime pickup_date { get; set; }
 
-        [StringLength(255)]
-        public string status { get; set; }
+        public Status Status { get; set; }
     }
 }

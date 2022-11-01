@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JetstreamSkiserviceAPI.Migrations
 {
     [DbContext(typeof(RegistrationContext))]
-    [Migration("20221029114019_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20221101200232_Naming")]
+    partial class Naming
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,7 @@ namespace JetstreamSkiserviceAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("EFCoreCodeFirst.Models.Registration", b =>
+            modelBuilder.Entity("JetstreamSkiserviceAPI.Models.Registration", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -61,14 +61,48 @@ namespace JetstreamSkiserviceAPI.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("status")
+                    b.Property<int>("status_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("status_id");
+
+                    b.ToTable("Registrations");
+                });
+
+            modelBuilder.Entity("JetstreamSkiserviceAPI.Models.Status", b =>
+                {
+                    b.Property<int>("status_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("status_id"), 1L, 1);
+
+                    b.Property<string>("status_name")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.HasKey("id");
+                    b.HasKey("status_id");
 
-                    b.ToTable("Registrations");
+                    b.ToTable("Status");
+                });
+
+            modelBuilder.Entity("JetstreamSkiserviceAPI.Models.Registration", b =>
+                {
+                    b.HasOne("JetstreamSkiserviceAPI.Models.Status", "Status")
+                        .WithMany("registrations")
+                        .HasForeignKey("status_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("JetstreamSkiserviceAPI.Models.Status", b =>
+                {
+                    b.Navigation("registrations");
                 });
 #pragma warning restore 612, 618
         }

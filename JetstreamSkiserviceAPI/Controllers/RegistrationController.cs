@@ -35,7 +35,8 @@ namespace JetstreamSkiserviceAPI.Controllers
                 service = e.service,
                 create_date = e.create_date,
                 pickup_date = e.pickup_date,
-                status = e.status
+                status = e.Status.status_name
+                //status = e.status
             }));
 
             return result;
@@ -59,7 +60,7 @@ namespace JetstreamSkiserviceAPI.Controllers
                 service = e.service,
                 create_date = e.create_date,
                 pickup_date = e.pickup_date,
-                status = e.status
+                //status = e.status
             };
         }
 
@@ -67,21 +68,26 @@ namespace JetstreamSkiserviceAPI.Controllers
         [HttpPost]
         public ActionResult<Registration> Create(RegistrationDTO registrationDTO)
         {
-            Registration newRegistration = new Registration()
-            {
-                name = registrationDTO.name,
-                email = registrationDTO.email,
-                phone = registrationDTO.phone,
-                priority = registrationDTO.priority,
-                service = registrationDTO.service,
-                create_date = registrationDTO.create_date,
-                pickup_date = registrationDTO.pickup_date,
-                status = registrationDTO.status
-            };
+            //var context = new RegistrationContext();
 
-            _registrationService.Add(newRegistration);
+            //Registration newRegistration = new Registration()
+            //{
+            //    name = registrationDTO.name,
+            //    email = registrationDTO.email,
+            //    phone = registrationDTO.phone,
+            //    priority = registrationDTO.priority,
+            //    service = registrationDTO.service,
+            //    create_date = registrationDTO.create_date,
+            //    pickup_date = registrationDTO.pickup_date,
+            //    //status = registrationDTO.status
+            //};
 
-            return CreatedAtAction(nameof(Create), new { id = newRegistration.id }, newRegistration);
+            //newRegistration.Status = context.Status.FirstOrDefault(e => e.status_name == registrationDTO.status);
+
+            _registrationService.Add(registrationDTO);
+
+            //return CreatedAtAction(nameof(Create), new { id = newRegistration.id }, newRegistration);
+            return null;
         }
 
         // DELETE action
@@ -109,7 +115,7 @@ namespace JetstreamSkiserviceAPI.Controllers
             e.service = registration.service;
             e.create_date = registration.create_date;
             e.pickup_date = registration.pickup_date;
-            e.status = registration.status;
+            //e.status = registration.status;
 
             _registrationService.Update(e);
 

@@ -3,6 +3,7 @@ using System.Text.Json;
 using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
 using JetstreamSkiserviceAPI.Models;
+using JetstreamSkiserviceAPI.DTO;
 
 namespace JetstreamSkiserviceAPI.Services
 {
@@ -25,9 +26,23 @@ namespace JetstreamSkiserviceAPI.Services
             return _dbContext.Registrations.Find(id);
         }
 
-        public void Add(Registration registration)
+        public void Add(RegistrationDTO registration)
         {
-            _dbContext.Registrations.Add(registration);
+            //var context = new RegistrationContext();
+
+            Registration newRegistration = new Registration()
+            {
+                name = registration.name,
+                email = registration.email,
+                phone = registration.phone,
+                priority = registration.priority,
+                service = registration.service,
+                create_date = registration.create_date,
+                pickup_date = registration.pickup_date,
+                Status = _dbContext.Status.FirstOrDefault(e => e.status_name == registration.status)
+            };
+
+            _dbContext.Add(newRegistration);
             _dbContext.SaveChanges();
         }
 

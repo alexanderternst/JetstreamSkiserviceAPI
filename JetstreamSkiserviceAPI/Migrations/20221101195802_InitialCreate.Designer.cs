@@ -4,6 +4,7 @@ using JetstreamSkiserviceAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JetstreamSkiserviceAPI.Migrations
 {
     [DbContext(typeof(RegistrationContext))]
-    partial class RegistrationContextModelSnapshot : ModelSnapshot
+    [Migration("20221101195802_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,7 +79,7 @@ namespace JetstreamSkiserviceAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("status_id"), 1L, 1);
 
-                    b.Property<string>("status_name")
+                    b.Property<string>("status")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
