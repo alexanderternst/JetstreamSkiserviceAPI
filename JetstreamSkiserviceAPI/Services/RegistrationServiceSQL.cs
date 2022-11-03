@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
 using JetstreamSkiserviceAPI.Models;
 using JetstreamSkiserviceAPI.DTO;
+using Microsoft.AspNetCore.Mvc;
 
 namespace JetstreamSkiserviceAPI.Services
 {
@@ -11,35 +12,66 @@ namespace JetstreamSkiserviceAPI.Services
     {
         private readonly RegistrationContext _dbContext;
 
+        public List<Registration> registrations = new List<Registration>();
+
         public RegistrationServiceSQL(RegistrationContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public IEnumerable<Registration> GetAll()
+        public List<RegistrationDTO> GetAll()
         {
-            return _dbContext.Registrations.ToList();
+            registrations = _dbContext.Registrations.Include("Status").Include("Priority").Include("Service").ToList();
+
+            List<RegistrationDTO> result = new List<RegistrationDTO>();
+            registrations.ForEach(e => result.Add(new RegistrationDTO()
+            {
+                id = e.id,
+                name = e.name,
+                email = e.email,
+                phone = e.phone,
+                create_date = e.create_date,
+                pickup_date = e.pickup_date,
+                status = e.Status.status_name,
+                priority = e.Priority.priority_name,
+                service = e.Service.service_name
+            }));
+
+            return result;
         }
 
-        public Registration? Get(int id)
+        public RegistrationDTO? Get(int id)
         {
-            return _dbContext.Registrations.Find(id);
+            List<RegistrationDTO> t = GetAll();
+
+            RegistrationDTO r = t.Find(p => p.id == id);
+
+            return new RegistrationDTO()
+            {
+                id = r.id,
+                name = r.name,
+                phone = r.phone,
+                email = r.email,
+                create_date = r.create_date,
+                pickup_date = r.pickup_date,
+                service = r.service,
+                priority = r.priority,
+                status = r.status
+            };
         }
 
         public void Add(RegistrationDTO registration)
         {
-            //var context = new RegistrationContext();
-
             Registration newRegistration = new Registration()
             {
                 name = registration.name,
                 email = registration.email,
                 phone = registration.phone,
-                priority = registration.priority,
-                service = registration.service,
                 create_date = registration.create_date,
                 pickup_date = registration.pickup_date,
-                Status = _dbContext.Status.FirstOrDefault(e => e.status_name == registration.status)
+                Status = _dbContext.Status.FirstOrDefault(e => e.status_name == registration.status),
+                Priority = _dbContext.Priority.FirstOrDefault(e => e.priority_name == registration.priority),
+                Service = _dbContext.Service.FirstOrDefault(e => e.service_name == registration.service)
             };
 
             _dbContext.Add(newRegistration);
@@ -56,7 +88,7 @@ namespace JetstreamSkiserviceAPI.Services
             }
         }
 
-        public void Update(Registration registration)
+        public void Update(RegistrationDTO registration)
         {
             _dbContext.Entry(registration).State = EntityState.Modified;
             _dbContext.SaveChanges();

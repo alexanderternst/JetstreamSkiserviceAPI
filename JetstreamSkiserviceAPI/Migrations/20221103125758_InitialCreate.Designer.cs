@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JetstreamSkiserviceAPI.Migrations
 {
     [DbContext(typeof(RegistrationContext))]
-    [Migration("20221101200232_Naming")]
-    partial class Naming
+    [Migration("20221103125758_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,23 @@ namespace JetstreamSkiserviceAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("JetstreamSkiserviceAPI.Models.Priority", b =>
+                {
+                    b.Property<int>("priority_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("priority_id"), 1L, 1);
+
+                    b.Property<string>("priority_name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("priority_id");
+
+                    b.ToTable("Priority");
+                });
 
             modelBuilder.Entity("JetstreamSkiserviceAPI.Models.Registration", b =>
                 {
@@ -51,24 +68,41 @@ namespace JetstreamSkiserviceAPI.Migrations
                     b.Property<DateTime>("pickup_date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("priority")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                    b.Property<int>("priority_id")
+                        .HasColumnType("int");
 
-                    b.Property<string>("service")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                    b.Property<int>("service_id")
+                        .HasColumnType("int");
 
                     b.Property<int>("status_id")
                         .HasColumnType("int");
 
                     b.HasKey("id");
 
+                    b.HasIndex("priority_id");
+
+                    b.HasIndex("service_id");
+
                     b.HasIndex("status_id");
 
                     b.ToTable("Registrations");
+                });
+
+            modelBuilder.Entity("JetstreamSkiserviceAPI.Models.Service", b =>
+                {
+                    b.Property<int>("service_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("service_id"), 1L, 1);
+
+                    b.Property<string>("service_name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("service_id");
+
+                    b.ToTable("Service");
                 });
 
             modelBuilder.Entity("JetstreamSkiserviceAPI.Models.Status", b =>
@@ -91,13 +125,39 @@ namespace JetstreamSkiserviceAPI.Migrations
 
             modelBuilder.Entity("JetstreamSkiserviceAPI.Models.Registration", b =>
                 {
+                    b.HasOne("JetstreamSkiserviceAPI.Models.Priority", "Priority")
+                        .WithMany("registrations")
+                        .HasForeignKey("priority_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("JetstreamSkiserviceAPI.Models.Service", "Service")
+                        .WithMany("registrations")
+                        .HasForeignKey("service_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("JetstreamSkiserviceAPI.Models.Status", "Status")
                         .WithMany("registrations")
                         .HasForeignKey("status_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Priority");
+
+                    b.Navigation("Service");
+
                     b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("JetstreamSkiserviceAPI.Models.Priority", b =>
+                {
+                    b.Navigation("registrations");
+                });
+
+            modelBuilder.Entity("JetstreamSkiserviceAPI.Models.Service", b =>
+                {
+                    b.Navigation("registrations");
                 });
 
             modelBuilder.Entity("JetstreamSkiserviceAPI.Models.Status", b =>

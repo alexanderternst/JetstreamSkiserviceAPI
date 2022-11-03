@@ -15,16 +15,12 @@ namespace JetstreamSkiserviceAPI.Models
 
         public int phone { get; set; }
 
-        [StringLength(255)]
-        public string priority { get; set; }
-
-        [StringLength(255)]
-        public string service { get; set; }
-
         public DateTime create_date { get; set; }
 
         public DateTime pickup_date { get; set; }
 
         public Status Status { get; set; }
+        public Priority Priority { get; set; }
+        public Service Service { get; set; }
     }
 }

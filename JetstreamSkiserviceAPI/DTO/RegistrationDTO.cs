@@ -17,12 +17,6 @@ namespace JetstreamSkiserviceAPI.DTO
         [JsonPropertyName("registration_phone")]
         public int phone { get; set; }
 
-        [JsonPropertyName("registration_priority")]
-        public string priority { get; set; }
-
-        [JsonPropertyName("registration_service")]
-        public string service { get; set; }
-
         [JsonPropertyName("registration_create_date")]
         public DateTime create_date { get; set; }
 
@@ -31,5 +25,11 @@ namespace JetstreamSkiserviceAPI.DTO
 
         [JsonPropertyName("registration_status")]
         public string status { get; set; }
+
+        [JsonPropertyName("registration_priority")]
+        public string priority { get; set; }
+
+        [JsonPropertyName("registration_service")]
+        public string service { get; set; }
     }
 }

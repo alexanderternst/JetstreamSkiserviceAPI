@@ -19,6 +19,10 @@ namespace JetstreamSkiserviceAPI.Models
 
         public DbSet<Status> Status { get; set; }
 
+        public DbSet<Priority> Priority { get; set; }
+
+        public DbSet<Service> Service { get; set; }
+
         // Diese Methode braucht man schlussendlich nicht, dies ist nur zum kreieren der Datenbank
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

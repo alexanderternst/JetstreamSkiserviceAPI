@@ -5,15 +5,15 @@ namespace JetstreamSkiserviceAPI.Services
 {
     public interface IRegistrationService
     {
-        IEnumerable<Registration> GetAll();
+        List<RegistrationDTO> GetAll();
 
-        Registration? Get(int id);
+        RegistrationDTO? Get(int id);
 
         void Add(RegistrationDTO registration);
 
         void Delete(int id);
 
-        void Update(Registration registration);
+        void Update(RegistrationDTO registration);
 
     }
 }

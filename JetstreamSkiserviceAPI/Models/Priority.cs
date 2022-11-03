@@ -2,13 +2,12 @@
 
 namespace JetstreamSkiserviceAPI.Models
 {
-    public class Status
+    public class Priority
     {
         [Key]
-        public int status_id { get; set; }
+        public int priority_id { get; set; }
 
-        [StringLength(255)]
-        public string status_name { get; set; }
+        public string priority_name { get; set; }
 
         public List<Registration> registrations { get; set; }
     }
