@@ -90,7 +90,20 @@ namespace JetstreamSkiserviceAPI.Services
 
         public void Update(RegistrationDTO registration)
         {
-            _dbContext.Entry(registration).State = EntityState.Modified;
+            Registration newRegistration = new Registration()
+            {
+                id = registration.id,
+                name = registration.name,
+                email = registration.email,
+                phone = registration.phone,
+                create_date = registration.create_date,
+                pickup_date = registration.pickup_date,
+                Status = _dbContext.Status.FirstOrDefault(e => e.status_name == registration.status),
+                Priority = _dbContext.Priority.FirstOrDefault(e => e.priority_name == registration.priority),
+                Service = _dbContext.Service.FirstOrDefault(e => e.service_name == registration.service)
+            };
+
+            _dbContext.Entry(newRegistration).State = EntityState.Modified;
             _dbContext.SaveChanges();
         }
     }
