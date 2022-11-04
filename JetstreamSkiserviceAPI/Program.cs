@@ -36,6 +36,8 @@ namespace AspNetCoreWebApi6
             // alle services die wir wollen registrieren
             // AddScoped, AddSingleton, AddTransient (wie viele instanzen, soll es von service geben)
             builder.Services.AddScoped<IRegistrationService, RegistrationServiceSQL>();
+            builder.Services.AddScoped<IStatusService, StatusServiceSQL>();
+
             builder.Services.AddControllers();
 
             builder.Services.AddControllers();

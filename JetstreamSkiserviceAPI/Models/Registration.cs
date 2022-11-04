@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JetstreamSkiserviceAPI.Models
 {
@@ -13,12 +14,13 @@ namespace JetstreamSkiserviceAPI.Models
         [StringLength(255)]
         public string email { get; set; }
 
-        public int phone { get; set; }
+        public string phone { get; set; }
 
         public DateTime create_date { get; set; }
 
         public DateTime pickup_date { get; set; }
 
+        //[NotMapped]
         public Status Status { get; set; }
         public Priority Priority { get; set; }
         public Service Service { get; set; }

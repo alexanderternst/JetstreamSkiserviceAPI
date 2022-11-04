@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using JetstreamSkiserviceAPI.Models;
 using JetstreamSkiserviceAPI.DTO;
 using Microsoft.AspNetCore.Mvc;
+using System.Numerics;
 
 namespace JetstreamSkiserviceAPI.Services
 {
@@ -78,32 +79,30 @@ namespace JetstreamSkiserviceAPI.Services
             _dbContext.SaveChanges();
         }
 
-        public void Delete(int Id)
+        public void Delete(int id)
         {
-            var registration = _dbContext.Registrations.Find(Id);
-            if (registration != null)
-            {
-                _dbContext.Registrations.Remove(registration);
-                _dbContext.SaveChanges();
-            }
+            var registration = _dbContext.Registrations.Find(id);
+
+            _dbContext.Registrations.Remove(registration);
+            _dbContext.SaveChanges();
         }
 
         public void Update(RegistrationDTO registration)
         {
-            Registration newRegistration = new Registration()
+            var reg = _dbContext.Registrations.Where(e => e.id == registration.id).FirstOrDefault();
+            if(reg != null)
             {
-                id = registration.id,
-                name = registration.name,
-                email = registration.email,
-                phone = registration.phone,
-                create_date = registration.create_date,
-                pickup_date = registration.pickup_date,
-                Status = _dbContext.Status.FirstOrDefault(e => e.status_name == registration.status),
-                Priority = _dbContext.Priority.FirstOrDefault(e => e.priority_name == registration.priority),
-                Service = _dbContext.Service.FirstOrDefault(e => e.service_name == registration.service)
-            };
+                reg.name = registration.name;
+                reg.email = registration.email;
+                reg.phone = registration.phone;
+                reg.create_date = registration.create_date;
+                reg.pickup_date = registration.pickup_date;
+                reg.Status = _dbContext.Status.FirstOrDefault(e => e.status_name == registration.status);
+                reg.Priority = _dbContext.Priority.FirstOrDefault(e => e.priority_name == registration.priority);
+                reg.Service = _dbContext.Service.FirstOrDefault(e => e.service_name == registration.service);
+            }
 
-            _dbContext.Entry(newRegistration).State = EntityState.Modified;
+            _dbContext.Entry(reg).State = EntityState.Modified;
             _dbContext.SaveChanges();
         }
     }

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace JetstreamSkiserviceAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class RegistrationController : ControllerBase
     {
         private IRegistrationService _registrationService;
@@ -43,9 +43,13 @@ namespace JetstreamSkiserviceAPI.Controllers
 
         // DELETE action
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
+            var registration = _registrationService.Get(id);
+            if (registration == null)
+                return NotFound();
             _registrationService.Delete(id);
+            return NoContent();
         }
 
         // PUT action
@@ -54,7 +58,7 @@ namespace JetstreamSkiserviceAPI.Controllers
         {
             RegistrationDTO e = _registrationService.Get(id);
             if (e == null)
-                return BadRequest();
+                return NotFound();
 
             e.name = registration.name;
             e.email = registration.email;

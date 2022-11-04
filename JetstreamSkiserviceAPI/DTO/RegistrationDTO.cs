@@ -15,7 +15,7 @@ namespace JetstreamSkiserviceAPI.DTO
         public string email { get; set; }
 
         [JsonPropertyName("registration_phone")]
-        public int phone { get; set; }
+        public string phone { get; set; }
 
         [JsonPropertyName("registration_create_date")]
         public DateTime create_date { get; set; }

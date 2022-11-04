@@ -6,7 +6,7 @@ namespace JetstreamSkiserviceAPI.Models
     {
         public RegistrationContext()
         {
-
+            
         }
 
         public RegistrationContext(DbContextOptions<RegistrationContext> options)
@@ -23,9 +23,12 @@ namespace JetstreamSkiserviceAPI.Models
 
         public DbSet<Service> Service { get; set; }
 
+        public DbSet<User> User { get; set; }
+
         // Diese Methode braucht man schlussendlich nicht, dies ist nur zum kreieren der Datenbank
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //optionsBuilder.UseLazy
             optionsBuilder.UseSqlServer(@"Server=ALEXANDERPC;Database=Registration;Trusted_Connection=True");
         }
     }
