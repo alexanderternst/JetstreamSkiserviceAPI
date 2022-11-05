@@ -1,6 +1,7 @@
 ﻿using JetstreamSkiserviceAPI.DTO;
 using JetstreamSkiserviceAPI.Models;
 using JetstreamSkiserviceAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace JetstreamSkiserviceAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class StatusController : ControllerBase
     {
         private IStatusService _statusService;

@@ -23,7 +23,7 @@ namespace JetstreamSkiserviceAPI.Models
 
         public DbSet<Service> Service { get; set; }
 
-        public DbSet<User> User { get; set; }
+        public DbSet<Users> Users { get; set; }
 
         // Diese Methode braucht man schlussendlich nicht, dies ist nur zum kreieren der Datenbank
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

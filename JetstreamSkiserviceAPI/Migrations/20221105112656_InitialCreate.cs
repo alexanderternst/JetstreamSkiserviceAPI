@@ -49,6 +49,23 @@ namespace JetstreamSkiserviceAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    user_id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    username = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    password = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Key = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Issuer = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Audience = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.user_id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Registrations",
                 columns: table => new
                 {
@@ -56,7 +73,7 @@ namespace JetstreamSkiserviceAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    phone = table.Column<int>(type: "int", nullable: false),
+                    phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     create_date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     pickup_date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     status_id = table.Column<int>(type: "int", nullable: false),
@@ -106,6 +123,9 @@ namespace JetstreamSkiserviceAPI.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Registrations");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Priority");
