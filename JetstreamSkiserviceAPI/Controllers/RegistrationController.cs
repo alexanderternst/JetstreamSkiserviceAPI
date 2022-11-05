@@ -27,10 +27,18 @@ namespace JetstreamSkiserviceAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<RegistrationDTO> Get(int id)
         {
-            RegistrationDTO e = _registrationService.Get(id);
-            if (e == null)
-                return NotFound();
-            return e;
+            try
+            {
+                RegistrationDTO e = _registrationService.Get(id);
+                if (e == null)
+                    return NotFound();
+                return e;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error occured, {ex.Message}");
+                return NotFound($"Error occured, {ex.Message}");
+            }
         }
 
         // POST action
@@ -38,43 +46,66 @@ namespace JetstreamSkiserviceAPI.Controllers
         [HttpPost]
         public ActionResult<Registration> Create(RegistrationDTO registration)
         {
-            _registrationService.Add(registration);
-
-            return CreatedAtAction(nameof(Create), new { id = registration.id }, registration);
+            try
+            {
+                _registrationService.Add(registration);
+                return CreatedAtAction(nameof(Create), new { id = registration.id }, registration);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error occured, {ex.Message}");
+                return NotFound($"Error occured, {ex.Message}");
+            }
         }
 
         // DELETE action
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var registration = _registrationService.Get(id);
-            if (registration == null)
-                return NotFound();
-            _registrationService.Delete(id);
-            return Content($"Item in row {id} deleted.");
+            try
+            {
+                var registration = _registrationService.Get(id);
+                if (registration == null)
+                    return NotFound();
+                _registrationService.Delete(id);
+                return Content($"Item in row {id} deleted.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error occured, {ex.Message}");
+                return NotFound($"Error occured, {ex.Message}");
+            }
         }
 
         // PUT action
         [HttpPut("{id}")]
         public ActionResult Update(int id, RegistrationDTO registration)
         {
-            RegistrationDTO e = _registrationService.Get(id);
-            if (e == null)
-                return NotFound();
+            try
+            {
+                RegistrationDTO e = _registrationService.Get(id);
+                if (e == null)
+                    return NotFound();
 
-            e.name = registration.name;
-            e.email = registration.email;
-            e.phone = registration.phone;
-            e.create_date = registration.create_date;
-            e.pickup_date = registration.pickup_date;
-            
-            e.status = registration.status;
-            e.service = registration.service;
-            e.priority = registration.priority;
+                e.name = registration.name;
+                e.email = registration.email;
+                e.phone = registration.phone;
+                e.create_date = registration.create_date;
+                e.pickup_date = registration.pickup_date;
 
-            _registrationService.Update(e);
+                e.status = registration.status;
+                e.service = registration.service;
+                e.priority = registration.priority;
 
-            return CreatedAtAction(nameof(Create), new { id = id }, registration);
+                _registrationService.Update(e);
+
+                return CreatedAtAction(nameof(Create), new { id = id }, registration);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error occured, {ex.Message}");
+                return NotFound($"Error occured, {ex.Message}");
+            }
         }
     }
 }

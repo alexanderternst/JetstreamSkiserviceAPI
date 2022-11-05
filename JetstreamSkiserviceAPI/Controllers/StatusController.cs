@@ -13,18 +13,40 @@ namespace JetstreamSkiserviceAPI.Controllers
     public class StatusController : ControllerBase
     {
         private IStatusService _statusService;
-        private readonly ILogger<RegistrationController> _logger;
+        private readonly ILogger<StatusController> _logger;
 
-        public StatusController(IStatusService status, ILogger<RegistrationController> logger)
+        public StatusController(IStatusService status, ILogger<StatusController> logger)
         {
             _statusService = status;
             _logger = logger;
         }
 
         [HttpGet]
-        public ActionResult<List<StatusDTO>> GetAll() => _statusService.GetAll();
+        public ActionResult<List<StatusDTO>> GetAll()
+        {
+            try
+            {
+                return _statusService.GetAll();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error occured, {ex.Message}");
+                return NotFound("Error occured");
+            }
+        }
 
         [HttpGet("{status}")]
-        public ActionResult<StatusDTO> GetByStatus(string status) => _statusService.GetStatus(status);
+        public ActionResult<StatusDTO> GetByStatus(string status)
+        {
+            try
+            {
+                return _statusService.GetStatus(status);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error occured, {ex.Message}");
+                return NotFound("Error occured");
+            }
+        }
     }
 }

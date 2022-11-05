@@ -12,24 +12,34 @@ namespace JetstreamSkiserviceAPI.Controllers
     {
         public List<Users> Users { get; set; } = new List<Users>();
         private readonly ITokenService _tokenService;
-        public UserController(ITokenService tokenService)
+        private readonly ILogger<UserController> _logger;
+        public UserController(ITokenService tokenService, ILogger<UserController> logger)
         {
             _tokenService = tokenService;
+            _logger = logger;
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] UserDTO user)
+        public ActionResult Login([FromBody] UserDTO user)
         {
-            Users = _tokenService.Login();
-
-            foreach (Users use in Users)
+            try
             {
-                if (user.username == use.username && user.password == use.password)
-                    return new JsonResult(new { userName = user.username, token = _tokenService.CreateToken(user.username) });
-                else
-                    return Unauthorized("Invalid Credentials");
+                Users = _tokenService.Login();
+
+                foreach (Users use in Users)
+                {
+                    if (user.username == use.username && user.password == use.password)
+                        return new JsonResult(new { userName = user.username, token = _tokenService.CreateToken(user.username) });
+                    else
+                        return Unauthorized("Invalid Credentials");
+                }
+                return NoContent();
             }
-            return NoContent();
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error occured, {ex.Message}");
+                return NotFound("Error occured");
+            }
         }
     }
 }

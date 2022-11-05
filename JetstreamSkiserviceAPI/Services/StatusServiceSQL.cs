@@ -15,45 +15,60 @@ namespace JetstreamSkiserviceAPI.Services
         }
         public List<StatusDTO> GetAll()
         {
-            Status = _dbContext.Status.Include("registrations").Include("registrations.Priority").Include("registrations.Service").ToList();
-
-            List<StatusDTO> result = new List<StatusDTO>();
-
-            foreach (var s in Status)
+            try
             {
-                var status = new StatusDTO();
-                status.status_id = s.status_id;
-                status.status_name = s.status_name;
 
-                foreach (var r in s.registrations)
+                Status = _dbContext.Status.Include("registrations").Include("registrations.Priority").Include("registrations.Service").ToList();
+
+                List<StatusDTO> result = new List<StatusDTO>();
+
+                foreach (var s in Status)
                 {
-                    RegistrationDTO rdto = new RegistrationDTO();
+                    var status = new StatusDTO();
+                    status.status_id = s.status_id;
+                    status.status_name = s.status_name;
 
-                    rdto.id = r.id;
-                    rdto.name = r.name;
-                    rdto.email = r.email;
-                    rdto.phone = r.phone;
-                    rdto.create_date = r.create_date;
-                    rdto.pickup_date = r.pickup_date;
+                    foreach (var r in s.registrations)
+                    {
+                        RegistrationDTO rdto = new RegistrationDTO();
 
-                    rdto.priority = r.Priority.priority_name;
-                    rdto.service = r.Service.service_name;
-                    rdto.status = s.status_name;
+                        rdto.id = r.id;
+                        rdto.name = r.name;
+                        rdto.email = r.email;
+                        rdto.phone = r.phone;
+                        rdto.create_date = r.create_date;
+                        rdto.pickup_date = r.pickup_date;
 
-                    status.registration.Add(rdto); // fehler 
+                        rdto.priority = r.Priority.priority_name;
+                        rdto.service = r.Service.service_name;
+                        rdto.status = s.status_name;
+
+                        status.registration.Add(rdto); // fehler 
+                    }
+                    result.Add(status);
                 }
-                result.Add(status);
+                return result;
             }
-            return result;
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public StatusDTO GetStatus(string status)
         {
-            List<StatusDTO> t = GetAll();
+            try
+            {
+                List<StatusDTO> t = GetAll();
 
-            StatusDTO r = t.Find(p => p.status_name == status);
+                StatusDTO result = t.Find(p => p.status_name == status);
 
-            return r;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
