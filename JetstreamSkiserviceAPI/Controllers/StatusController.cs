@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JetstreamSkiserviceAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     [Authorize]
+    [Route("api/[controller]")]
     public class StatusController : ControllerBase
     {
         private IStatusService _statusService;

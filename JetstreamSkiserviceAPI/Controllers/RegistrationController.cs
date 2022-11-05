@@ -31,17 +31,16 @@ namespace JetstreamSkiserviceAPI.Controllers
             if (e == null)
                 return NotFound();
             return e;
-
         }
 
         // POST action
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult<Registration> Create(RegistrationDTO registrationDTO)
+        public ActionResult<Registration> Create(RegistrationDTO registration)
         {
-            _registrationService.Add(registrationDTO);
+            _registrationService.Add(registration);
 
-            return CreatedAtAction(nameof(Create), new { id = registrationDTO.id }, registrationDTO);
+            return CreatedAtAction(nameof(Create), new { id = registration.id }, registration);
         }
 
         // DELETE action
@@ -52,7 +51,7 @@ namespace JetstreamSkiserviceAPI.Controllers
             if (registration == null)
                 return NotFound();
             _registrationService.Delete(id);
-            return NoContent();
+            return Content($"Item in row {id} deleted.");
         }
 
         // PUT action
@@ -75,7 +74,7 @@ namespace JetstreamSkiserviceAPI.Controllers
 
             _registrationService.Update(e);
 
-            return NoContent();
+            return CreatedAtAction(nameof(Create), new { id = id }, registration);
         }
     }
 }

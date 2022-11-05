@@ -17,8 +17,8 @@ namespace JWTAuthentication.Services
         private readonly SymmetricSecurityKey _key;
 		public TokenService(IConfiguration config, RegistrationContext dbContext)
 		{
-			_key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]));
             _dbContext = dbContext;
+            _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]));
         }
 
 		public string CreateToken(string username)
@@ -36,7 +36,7 @@ namespace JWTAuthentication.Services
 			var tokenDescriptor = new SecurityTokenDescriptor
 			{
 				Subject = new ClaimsIdentity(claims),
-				Expires = DateTime.Now.AddMinutes(1),
+				Expires = DateTime.Now.AddDays(1),
 				SigningCredentials = creds
 			};
 
@@ -50,9 +50,17 @@ namespace JWTAuthentication.Services
 
 		public List<Users> Login()
 		{
-			List<Users> users = new List<Users>();
+            List<Users> users = new List<Users>();
 			users = _dbContext.Users.ToList();
 			return users;
 		}
+
+		//public Users info(int userid)
+		//{
+		//	List<Users> info = new List<Users>();
+		//	info = Login();
+		//	Users us = info.Find(p => p.user_id == userid);
+		//	return us;
+		//}
 	}
 }

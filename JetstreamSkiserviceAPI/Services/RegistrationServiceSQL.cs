@@ -45,25 +45,25 @@ namespace JetstreamSkiserviceAPI.Services
         {
             List<RegistrationDTO> t = GetAll();
 
-            RegistrationDTO r = t.Find(p => p.id == id);
+            RegistrationDTO reg = t.Find(p => p.id == id);
 
             return new RegistrationDTO()
             {
-                id = r.id,
-                name = r.name,
-                phone = r.phone,
-                email = r.email,
-                create_date = r.create_date,
-                pickup_date = r.pickup_date,
-                service = r.service,
-                priority = r.priority,
-                status = r.status
+                id = reg.id,
+                name = reg.name,
+                phone = reg.phone,
+                email = reg.email,
+                create_date = reg.create_date,
+                pickup_date = reg.pickup_date,
+                service = reg.service,
+                priority = reg.priority,
+                status = reg.status
             };
         }
 
         public void Add(RegistrationDTO registration)
         {
-            Registration newRegistration = new Registration()
+            Registration newReg = new Registration()
             {
                 name = registration.name,
                 email = registration.email,
@@ -75,15 +75,15 @@ namespace JetstreamSkiserviceAPI.Services
                 Service = _dbContext.Service.FirstOrDefault(e => e.service_name == registration.service)
             };
 
-            _dbContext.Add(newRegistration);
+            _dbContext.Add(newReg);
             _dbContext.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            var registration = _dbContext.Registrations.Find(id);
+            var reg = _dbContext.Registrations.Find(id);
 
-            _dbContext.Registrations.Remove(registration);
+            _dbContext.Registrations.Remove(reg);
             _dbContext.SaveChanges();
         }
 

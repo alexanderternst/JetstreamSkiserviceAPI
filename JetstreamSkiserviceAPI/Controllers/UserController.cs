@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JetstreamSkiserviceAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
         public List<Users> Users { get; set; } = new List<Users>();
@@ -17,14 +17,9 @@ namespace JetstreamSkiserviceAPI.Controllers
             _tokenService = tokenService;
         }
 
-        // TODO
-        // POST für das einloggen
         [HttpPost("login")]
         public IActionResult Login([FromBody] UserDTO user)
         {
-            // Siehe JWTAuth Aufgabe
-            // Methode welche richtigen User Daten zurückgibt
-            // Vergleich ob Daten stimmen
             Users = _tokenService.Login();
 
             foreach (Users use in Users)

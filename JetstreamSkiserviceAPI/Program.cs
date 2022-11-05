@@ -6,6 +6,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using JWTAuthentication.Services;
+using JetstreamSkiserviceAPI.Controllers;
+using Microsoft.OpenApi.Models;
 
 // Add-Migration InitialCreate
 // Update-Database
@@ -46,11 +48,14 @@ namespace AspNetCoreWebApi6
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "JWT", Version = "v1" });
+            });
 
             //
             // JWT
-            //
+            //       
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -71,11 +76,13 @@ namespace AspNetCoreWebApi6
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "JWT v1"));
             }
 
             app.UseHttpsRedirection();
 
+            // Auth
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();
@@ -83,5 +90,6 @@ namespace AspNetCoreWebApi6
             app.Run();
 
         }
+
     }
 }
