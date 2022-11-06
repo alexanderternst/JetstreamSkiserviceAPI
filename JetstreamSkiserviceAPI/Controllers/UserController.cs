@@ -1,12 +1,14 @@
 ﻿using JetstreamSkiserviceAPI.DTO;
 using JetstreamSkiserviceAPI.Models;
 using JWTAuthentication.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JetstreamSkiserviceAPI.Controllers
 {
     [ApiController]
+    [AllowAnonymous]
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
@@ -38,7 +40,7 @@ namespace JetstreamSkiserviceAPI.Controllers
             catch (Exception ex)
             {
                 _logger.LogError($"Error occured, {ex.Message}");
-                return NotFound("Error occured");
+                return NotFound($"Error occured, {ex.Message}");
             }
         }
     }

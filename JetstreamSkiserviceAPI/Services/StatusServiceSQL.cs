@@ -43,7 +43,7 @@ namespace JetstreamSkiserviceAPI.Services
                         rdto.service = r.Service.service_name;
                         rdto.status = s.status_name;
 
-                        status.registration.Add(rdto); // fehler 
+                        status.registration.Add(rdto);
                     }
                     result.Add(status);
                 }

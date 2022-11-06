@@ -20,7 +20,6 @@ namespace JetstreamSkiserviceAPI.Models
 
         public DateTime pickup_date { get; set; }
 
-        //[NotMapped]
         public Status Status { get; set; }
         public Priority Priority { get; set; }
         public Service Service { get; set; }

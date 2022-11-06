@@ -68,13 +68,5 @@ namespace JWTAuthentication.Services
                 throw new Exception(ex.Message);
             }
 		}
-
-		//public Users info(int userid)
-		//{
-		//	List<Users> info = new List<Users>();
-		//	info = Login();
-		//	Users us = info.Find(p => p.user_id == userid);
-		//	return us;
-		//}
 	}
 }

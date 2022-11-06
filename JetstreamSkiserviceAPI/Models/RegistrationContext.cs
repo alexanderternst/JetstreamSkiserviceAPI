@@ -25,10 +25,8 @@ namespace JetstreamSkiserviceAPI.Models
 
         public DbSet<Users> Users { get; set; }
 
-        // Diese Methode braucht man schlussendlich nicht, dies ist nur zum kreieren der Datenbank
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseLazy
             optionsBuilder.UseSqlServer(@"Server=ALEXANDERPC;Database=Registration;Trusted_Connection=True");
         }
     }
