@@ -30,5 +30,8 @@ namespace JetstreamSkiserviceAPI.DTO
 
         [JsonPropertyName("registration_service")]
         public string service { get; set; }
+
+        [JsonPropertyName("registration_comment")]
+        public string comment { get; set; }
     }
 }

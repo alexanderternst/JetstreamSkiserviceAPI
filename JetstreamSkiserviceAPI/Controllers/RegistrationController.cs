@@ -96,6 +96,7 @@ namespace JetstreamSkiserviceAPI.Controllers
                 e.status = registration.status;
                 e.service = registration.service;
                 e.priority = registration.priority;
+                e.comment = registration.comment;
 
                 _registrationService.Update(e);
 

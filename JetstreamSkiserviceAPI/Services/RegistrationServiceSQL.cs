@@ -32,7 +32,8 @@ namespace JetstreamSkiserviceAPI.Services
                     pickup_date = e.pickup_date,
                     status = e.Status.status_name,
                     priority = e.Priority.priority_name,
-                    service = e.Service.service_name
+                    service = e.Service.service_name,
+                    comment = e.comment,
                 }));
 
                 return result;
@@ -64,7 +65,8 @@ namespace JetstreamSkiserviceAPI.Services
                     pickup_date = reg.pickup_date,
                     service = reg.service,
                     priority = reg.priority,
-                    status = reg.status
+                    status = reg.status,
+                    comment = reg.comment,
                 };
             }
             catch (Exception ex)
@@ -86,7 +88,8 @@ namespace JetstreamSkiserviceAPI.Services
                     pickup_date = registration.pickup_date,
                     Status = _dbContext.Status.FirstOrDefault(e => e.status_name == registration.status),
                     Priority = _dbContext.Priority.FirstOrDefault(e => e.priority_name == registration.priority),
-                    Service = _dbContext.Service.FirstOrDefault(e => e.service_name == registration.service)
+                    Service = _dbContext.Service.FirstOrDefault(e => e.service_name == registration.service),
+                    comment = registration.comment
                 };
 
                 _dbContext.Add(newReg);
@@ -128,6 +131,7 @@ namespace JetstreamSkiserviceAPI.Services
                     reg.Status = _dbContext.Status.FirstOrDefault(e => e.status_name == registration.status);
                     reg.Priority = _dbContext.Priority.FirstOrDefault(e => e.priority_name == registration.priority);
                     reg.Service = _dbContext.Service.FirstOrDefault(e => e.service_name == registration.service);
+                    reg.comment = registration.comment;
                 }
 
                 _dbContext.Entry(reg).State = EntityState.Modified;
