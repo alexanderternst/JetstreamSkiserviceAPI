@@ -75,7 +75,7 @@ namespace AspNetCoreWebApi6
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "JWT v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Jetstream Skiservice API v1"));
             }
 
             app.UseHttpsRedirection();

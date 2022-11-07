@@ -1,18 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using JetstreamSkiserviceAPI.DTO;
+using Microsoft.EntityFrameworkCore;
 
 namespace JetstreamSkiserviceAPI.Models
 {
     public class RegistrationContext : DbContext
     {
+        private readonly IConfiguration _config;
         public RegistrationContext()
         {
             
         }
 
-        public RegistrationContext(DbContextOptions<RegistrationContext> options)
+        public RegistrationContext(DbContextOptions<RegistrationContext> options, IConfiguration config)
             : base(options)
         {
-
+            _config = config;
         }
 
         public DbSet<Registration> Registrations { get; set; }
@@ -27,7 +29,8 @@ namespace JetstreamSkiserviceAPI.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=ALEXANDERPC;Database=Registration;Trusted_Connection=True");
+            string t = _config.GetConnectionString("RegistrationDB");
+            optionsBuilder.UseSqlServer($@"{t}");
         }
     }
 }

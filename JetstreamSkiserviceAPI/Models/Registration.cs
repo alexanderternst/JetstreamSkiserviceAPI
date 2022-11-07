@@ -13,6 +13,7 @@ namespace JetstreamSkiserviceAPI.Models
         [StringLength(255)]
         public string email { get; set; }
 
+        [StringLength(255)]
         public string phone { get; set; }
 
         public DateTime create_date { get; set; }

@@ -1,5 +1,8 @@
-﻿using JetstreamSkiserviceAPI.Models;
+﻿using JetstreamSkiserviceAPI.DTO;
+using JetstreamSkiserviceAPI.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Collections.Immutable;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -64,5 +67,58 @@ namespace JWTAuthentication.Services
                 throw new Exception(ex.Message);
             }
 		}
+
+		public void Counter(int userid)
+		{
+			try
+			{
+				Users u = new Users();
+				u = _dbContext.Users.Where(u => u.user_id == userid).FirstOrDefault();
+				u.counter = u.counter + 1;
+				_dbContext.Entry(u).State = EntityState.Modified;
+				_dbContext.SaveChanges();
+			}
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+		public void Unban(int userid)
+		{
+			try
+			{
+				Users u = new Users();
+				u = _dbContext.Users.Where(u => u.user_id == userid).FirstOrDefault();
+				u.counter = 0;
+				_dbContext.Entry(u).State = EntityState.Modified;
+				_dbContext.SaveChanges();
+			}
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+		public List<Users> GetUsers()
+		{
+			try
+			{
+				List<Users> users = _dbContext.Users.ToList();
+				List<Users> result = new List<Users>();
+				users.ForEach(e => result.Add(new Users()
+				{
+					user_id = e.user_id,
+					username = e.username,
+					password = "hidden",
+					counter = e.counter
+				}));
+				return result;
+			}
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 	}
 }
