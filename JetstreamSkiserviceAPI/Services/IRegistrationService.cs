@@ -1,5 +1,4 @@
 ﻿using JetstreamSkiserviceAPI.DTO;
-using JetstreamSkiserviceAPI.Models;
 
 namespace JetstreamSkiserviceAPI.Services
 {

@@ -1,11 +1,6 @@
-﻿using JetstreamSkiserviceAPI;
-using System.Text.Json;
-using Newtonsoft.Json;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using JetstreamSkiserviceAPI.Models;
 using JetstreamSkiserviceAPI.DTO;
-using Microsoft.AspNetCore.Mvc;
-using System.Numerics;
 
 namespace JetstreamSkiserviceAPI.Services
 {

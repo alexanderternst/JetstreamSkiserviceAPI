@@ -1,6 +1,4 @@
-﻿using JetstreamSkiserviceAPI.Models;
-
-namespace JetstreamSkiserviceAPI.DTO
+﻿namespace JetstreamSkiserviceAPI.DTO
 {
     public class StatusDTO
     {

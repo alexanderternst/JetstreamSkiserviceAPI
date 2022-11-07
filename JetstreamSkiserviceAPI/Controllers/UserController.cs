@@ -2,7 +2,6 @@
 using JetstreamSkiserviceAPI.Models;
 using JWTAuthentication.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JetstreamSkiserviceAPI.Controllers

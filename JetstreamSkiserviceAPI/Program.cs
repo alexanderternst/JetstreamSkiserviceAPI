@@ -6,7 +6,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using JWTAuthentication.Services;
-using JetstreamSkiserviceAPI.Controllers;
 using Microsoft.OpenApi.Models;
 
 // Add-Migration InitialCreate
