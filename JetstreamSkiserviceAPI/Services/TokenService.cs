@@ -96,6 +96,7 @@ namespace JWTAuthentication.Services
 			}
             catch (Exception ex)
             {
+				// hallo....
                 throw new Exception(ex.Message);
             }
         }
