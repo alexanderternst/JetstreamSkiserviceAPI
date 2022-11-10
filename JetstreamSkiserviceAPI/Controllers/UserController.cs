@@ -30,22 +30,33 @@ namespace JetstreamSkiserviceAPI.Controllers
 
                 foreach (Users use in Users)
                 {
-                    if (use.counter >= 3)
+                    if (user.username == use.username && user.password == use.password)
                     {
-                        return Unauthorized("This user seems to have been banned. Please contact our support team.");
-                    }
-                    else if (user.username == use.username && user.password == use.password)
-                    {
-                        return new JsonResult(new { userName = user.username, token = _tokenService.CreateToken(user.username) });
+                        if (use.counter >= 3)
+                        {
+                            return Unauthorized("This user seems to have been banned. Please contact our support team.");
+                        }
+                        else
+                        {
+                            return new JsonResult(new { userName = user.username, token = _tokenService.CreateToken(user.username) });
+                        }
                     }
                     else if (user.username == use.username && user.password != use.password)
                     {
-                        _tokenService.Counter(use.user_id);
-                        return Unauthorized($"Invalid Credentials. {3 - use.counter} attepts left");
+                        if (use.counter >= 3)
+                        {
+                            return Unauthorized("This user seems to have been banned. Please contact our support team.");
+                        }
+                        else
+                        {
+                            _tokenService.Counter(use.user_id);
+                            return Unauthorized($"Invalid Credentials. {3 - use.counter} attepts left");
+                        }
                     }
                     else
                     {
-                        return Unauthorized("This user does not exits, try again.");
+                        continue;
+                        //return Unauthorized("This user does not exits, try again.");
                     }
                 }
                 return NoContent();
