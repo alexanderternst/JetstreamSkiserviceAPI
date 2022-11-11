@@ -23,7 +23,7 @@ namespace AspNetCoreWebApi6
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            // SQL Verbindung
             builder.Services.AddDbContext<RegistrationContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("RegistrationDB")));
 
@@ -37,8 +37,6 @@ namespace AspNetCoreWebApi6
             builder.Logging.AddSerilog(loggerFromSettings);
 
             // configure DI for application services
-            // alle services die wir wollen registrieren
-            // AddScoped, AddSingleton, AddTransient (wie viele instanzen, soll es von service geben)
             builder.Services.AddScoped<IRegistrationService, RegistrationServiceSQL>();
             builder.Services.AddScoped<IStatusService, StatusServiceSQL>();
             builder.Services.AddScoped<ITokenService, TokenService>();
@@ -52,9 +50,7 @@ namespace AspNetCoreWebApi6
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Jetstream Skiservice API", Version = "v1" });
             });
 
-            //
             // JWT
-            //       
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
