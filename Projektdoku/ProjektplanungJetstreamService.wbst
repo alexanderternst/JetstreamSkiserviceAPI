@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<Projekt><Options>True|3|0|*|E:\WBStool\Publish|-1|-657931|-4144960|-9868951|-4194304|EN|1|0|False|*|1000|1|CHF|2.4.0.0</Options>
+<DBid>0</DBid>
+<Work>
+<Name>Projektplanung Jetstream Service</Name><Status>2</Status><Start>2022-10-23T00:00:00</Start><Ende>2022-11-12T00:00:00</Ende><PL>DS</PL><StdPlan>20</StdPlan><StdBisher>20.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+<Work>
+<Name>Informieren</Name>
+<Work>
+<Name>Ausgangslage/Anforderungen</Name><Status>2</Status><Start>2022-10-23T00:00:00</Start><Ende>2022-10-24T00:00:00</Ende><StdPlan>1</StdPlan><StdBisher>1.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+</Work>
+<Work>
+<Name>Informieren &#252;ber Web API</Name><Status>2</Status><Start>2022-10-23T00:00:00</Start><Ende>2022-10-24T00:00:00</Ende><StdPlan>1</StdPlan><StdBisher>1.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+</Work>
+</Work>
+<Work>
+<Name>Planen</Name>
+<Work>
+<Name>Datenbank Aufbau</Name><Status>2</Status><Start>2022-10-24T00:00:00</Start><Ende>2022-10-26T00:00:00</Ende><StdPlan>1</StdPlan><StdBisher>1.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+</Work>
+<Work>
+<Name>Web API Aufbau</Name><Status>2</Status><Start>2022-10-24T00:00:00</Start><Ende>2022-10-26T00:00:00</Ende><StdPlan>1</StdPlan><StdBisher>1.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+</Work>
+<Work>
+<Name>Zeitplanung und PSP</Name><Status>2</Status><Start>2022-10-26T00:00:00</Start><Ende>2022-10-27T00:00:00</Ende><StdPlan>1</StdPlan><StdBisher>1.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+</Work>
+</Work>
+<Work>
+<Name>Entscheiden</Name>
+<Work>
+<Name>F&#252;r Versionierungsplattform/Tools entscheiden</Name><Status>2</Status><Start>2022-10-27T00:00:00</Start><Ende>2022-10-28T00:00:00</Ende><StdPlan>1</StdPlan><StdBisher>1.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+</Work>
+<Work>
+<Name>F&#252;r Web API Aufbau entscheiden</Name><Status>2</Status><Start>2022-10-27T00:00:00</Start><Ende>2022-10-29T00:00:00</Ende><StdPlan>1</StdPlan><StdBisher>1.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+</Work>
+<Work>
+<Name>F&#252;r Datenbankaufbau entscheiden</Name><Status>2</Status><Start>2022-10-27T00:00:00</Start><Ende>2022-10-29T00:00:00</Ende><StdPlan>1</StdPlan><StdBisher>1.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+</Work>
+<Work>
+<Name>F&#252;r Zusatzanforderungen entscheiden</Name><Status>2</Status><Start>2022-10-27T00:00:00</Start><Ende>2022-10-29T00:00:00</Ende><StdPlan>1</StdPlan><StdBisher>1.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+</Work>
+<Work>
+<Name>F&#252;r Web API Authentifikation entscheiden</Name><Status>2</Status><Start>2022-11-04T00:00:00</Start><Ende>2022-11-05T00:00:00</Ende><StdPlan>1</StdPlan><StdBisher>1.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+</Work>
+</Work>
+<Work>
+<Name>Realisieren</Name>
+<Work>
+<Name>Datenbank erstellen</Name><Status>2</Status><Start>2022-10-29T00:00:00</Start><Ende>2022-10-30T00:00:00</Ende><StdPlan>1</StdPlan><StdBisher>1.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+</Work>
+<Work>
+<Name>DTOs f&#252;r Zugriff erstellen</Name><Status>2</Status><Start>2022-10-29T00:00:00</Start><Ende>2022-10-30T00:00:00</Ende><StdPlan>1</StdPlan><StdBisher>1.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+</Work>
+<Work>
+<Name>HTTP Methoden/Services erstellen</Name><Status>2</Status><Start>2022-10-30T00:00:00</Start><Ende>2022-11-04T00:00:00</Ende><StdPlan>1</StdPlan><StdBisher>1.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+</Work>
+<Work>
+<Name>Zusatzfeatures erstellen</Name><Status>2</Status><Start>2022-11-03T00:00:00</Start><Ende>2022-11-06T00:00:00</Ende><StdPlan>1</StdPlan><StdBisher>1.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+</Work>
+<Work>
+<Name>Authentifikation erstellen</Name><Status>2</Status><Start>2022-11-04T00:00:00</Start><Ende>2022-11-10T00:00:00</Ende><StdPlan>1</StdPlan><StdBisher>1.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+</Work>
+</Work>
+<Work>
+<Name>Kontrollieren</Name>
+<Work>
+<Name>Web API mit Postman testen</Name>
+<Work>
+<Name>Alle HTTP Methoden testen</Name><Status>2</Status><Start>2022-11-05T00:00:00</Start><Ende>2022-11-06T00:00:00</Ende><StdPlan>1</StdPlan><StdBisher>1.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+</Work>
+<Work>
+<Name>Zusatzfeatures testen</Name><Status>2</Status><Start>2022-11-05T00:00:00</Start><Ende>2022-11-06T00:00:00</Ende><StdPlan>1</StdPlan><StdBisher>1.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+</Work>
+<Work>
+<Name>Authentifikation testen</Name><Status>2</Status><Start>2022-11-07T00:00:00</Start><Ende>2022-11-11T00:00:00</Ende><StdPlan>1</StdPlan><StdBisher>1.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+</Work>
+</Work>
+</Work>
+<Work>
+<Name>Auswerten</Name>
+<Work>
+<Name>Reflexion/Fazit zu Projekt</Name><Status>2</Status><Start>2022-11-11T00:00:00</Start><Ende>2022-11-12T00:00:00</Ende><StdPlan>1</StdPlan><StdBisher>1.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+</Work>
+<Work>
+<Name>Dokumentation fertigstellen/Pr&#228;sentation erstellen</Name><Status>2</Status><Start>2022-11-11T00:00:00</Start><Ende>2022-11-12T00:00:00</Ende><StdPlan>1</StdPlan><StdBisher>1.0</StdBisher><StdRest>0</StdRest><ExtKostPlan>0</ExtKostPlan>
+</Work>
+</Work>
+</Work>
+</Projekt>
