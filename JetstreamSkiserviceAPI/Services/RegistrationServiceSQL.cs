@@ -4,17 +4,29 @@ using JetstreamSkiserviceAPI.DTO;
 
 namespace JetstreamSkiserviceAPI.Services
 {
+    /// <summary>
+    /// Registration Service für RegisrationController
+    /// </summary>
     public class RegistrationServiceSQL : IRegistrationService
     {
         private readonly RegistrationContext _dbContext;
 
         public List<Registration> registrations = new List<Registration>();
 
+        /// <summary>
+        /// Konstruktor für instanziierung von SQL Server verbindung
+        /// </summary>
+        /// <param name="dbContext">RegistrationContext</param>
         public RegistrationServiceSQL(RegistrationContext dbContext)
         {
             _dbContext = dbContext;
         }
 
+        /// <summary>
+        /// GetAll Methode welche alle Registrationen ausliest/zurückgibt
+        /// </summary>
+        /// <returns>Liste von RegistrationDTO</returns>
+        /// <exception cref="Exception"></exception>
         public List<RegistrationDTO> GetAll()
         {
             try
@@ -44,13 +56,19 @@ namespace JetstreamSkiserviceAPI.Services
             }
         }
 
-        public RegistrationDTO? Get(int id)
+        /// <summary>
+        /// GetById Methode welche Registration nach bestimmter id ausliest/zurückgibt
+        /// </summary>
+        /// <param name="id">erwartet id</param>
+        /// <returns>RegistrationDTO</returns>
+        /// <exception cref="Exception"></exception>
+        public RegistrationDTO Get(int id)
         {
             try
             {
-                List<RegistrationDTO> t = GetAll();
+                List<RegistrationDTO> e = GetAll();
 
-                RegistrationDTO reg = t.Find(p => p.id == id);
+                RegistrationDTO reg = e.Find(p => p.id == id);
 
                 if (reg == null)
                     throw new Exception("Item does not exist");
@@ -75,11 +93,16 @@ namespace JetstreamSkiserviceAPI.Services
             }
         }
 
+        /// <summary>
+        /// Add Methode für hinzufügen von Eintrag in Registration
+        /// </summary>
+        /// <param name="registration">erwartet registration</param>
+        /// <exception cref="Exception"></exception>
         public void Add(RegistrationDTO registration)
         {
             try
             {
-                Registration newReg = new Registration()
+                Registration reg = new Registration()
                 {
                     name = registration.name,
                     email = registration.email,
@@ -92,7 +115,7 @@ namespace JetstreamSkiserviceAPI.Services
                     comment = registration.comment
                 };
 
-                _dbContext.Add(newReg);
+                _dbContext.Add(reg);
                 _dbContext.SaveChanges();
             }
             catch (Exception ex)
@@ -101,6 +124,11 @@ namespace JetstreamSkiserviceAPI.Services
             }
         }
 
+        /// <summary>
+        /// Delete Methode für löschen von Eintrag in Registration
+        /// </summary>
+        /// <param name="id">erwartet id</param>
+        /// <exception cref="Exception"></exception>
         public void Delete(int id)
         {
             try
@@ -116,6 +144,11 @@ namespace JetstreamSkiserviceAPI.Services
             }
         }
 
+        /// <summary>
+        /// Update Methode für modifizieren von Eintrag in Registrationen
+        /// </summary>
+        /// <param name="registration">erwartet registration</param>
+        /// <exception cref="Exception"></exception>
         public void Update(RegistrationDTO registration)
         {
             try

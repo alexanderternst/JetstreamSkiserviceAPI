@@ -1,5 +1,8 @@
 ﻿namespace JetstreamSkiserviceAPI.DTO
 {
+    /// <summary>
+    /// DTO Klasse für Stati
+    /// </summary>
     public class StatusDTO
     {
         public int status_id { get; set; }

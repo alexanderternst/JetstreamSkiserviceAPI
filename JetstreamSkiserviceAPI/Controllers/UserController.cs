@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JetstreamSkiserviceAPI.Controllers
 {
+    /// <summary>
+    /// Controller für JWT Key/Login
+    /// </summary>
     [ApiController]
     [Authorize]
     [Route("api/[controller]")]
@@ -14,12 +17,24 @@ namespace JetstreamSkiserviceAPI.Controllers
         public List<Users> Users { get; set; } = new List<Users>();
         private readonly ITokenService _tokenService;
         private readonly ILogger<UserController> _logger;
+
+        /// <summary>
+        /// Konstruktor für instanziierung von Interface und Logger
+        /// </summary>
+        /// <param name="tokenService">Interface Service</param>
+        /// <param name="logger">Interface Logger</param>
         public UserController(ITokenService tokenService, ILogger<UserController> logger)
         {
             _tokenService = tokenService;
             _logger = logger;
         }
 
+        /// <summary>
+        /// Login Methode welche User über Interfce/Service abruft und dann eine validierung durchführt.
+        /// Je nach validierung wird JWT Key returned.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>ActionResult</returns>
         [AllowAnonymous]
         [HttpPost("login")]
         public ActionResult Login([FromBody] UserDTO user)
@@ -56,7 +71,6 @@ namespace JetstreamSkiserviceAPI.Controllers
                     else
                     {
                         continue;
-                        //return Unauthorized("This user does not exits, try again.");
                     }
                 }
                 return NoContent();
@@ -68,6 +82,11 @@ namespace JetstreamSkiserviceAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Unban Methode welche User über Interface/Service entbannt
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>ActionResult</returns>
         [HttpPut("unban/{id}")]
         public ActionResult Unban(int id)
         {
@@ -83,6 +102,10 @@ namespace JetstreamSkiserviceAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// GetAll Methode welche alle User über Interface/Service abruft
+        /// </summary>
+        /// <returns>Liste von Usern</returns>
         [HttpGet]
         public ActionResult<List<Users>> GetAll()
         {

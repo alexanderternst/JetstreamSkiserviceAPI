@@ -2,6 +2,9 @@
 
 namespace JetstreamSkiserviceAPI.DTO
 {
+    /// <summary>
+    /// DTO Klasse für Registrationen
+    /// </summary>
     public class RegistrationDTO
     {
         [JsonPropertyName("registration_id")]

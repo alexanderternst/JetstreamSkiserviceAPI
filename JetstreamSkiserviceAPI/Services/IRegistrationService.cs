@@ -2,11 +2,14 @@
 
 namespace JetstreamSkiserviceAPI.Services
 {
+    /// <summary>
+    /// Interface für RegistrationService
+    /// </summary>
     public interface IRegistrationService
     {
         List<RegistrationDTO> GetAll();
 
-        RegistrationDTO? Get(int id);
+        RegistrationDTO Get(int id);
 
         void Add(RegistrationDTO registration);
 

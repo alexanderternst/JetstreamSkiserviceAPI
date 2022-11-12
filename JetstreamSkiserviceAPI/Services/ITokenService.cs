@@ -1,8 +1,10 @@
-﻿using JetstreamSkiserviceAPI.DTO;
-using JetstreamSkiserviceAPI.Models;
+﻿using JetstreamSkiserviceAPI.Models;
 
 namespace JWTAuthentication.Services
 {
+	/// <summary>
+	/// Interface für TokenService
+	/// </summary>
 	public interface ITokenService
 	{
 		string CreateToken(string username);

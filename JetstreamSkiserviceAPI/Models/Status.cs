@@ -2,6 +2,9 @@
 
 namespace JetstreamSkiserviceAPI.Models
 {
+    /// <summary>
+    /// Status Klasse für Datenbankkreation/Datenbankverbindung
+    /// </summary>
     public class Status
     {
         [Key]

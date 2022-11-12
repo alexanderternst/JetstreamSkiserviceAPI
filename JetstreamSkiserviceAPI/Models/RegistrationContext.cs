@@ -2,14 +2,26 @@
 
 namespace JetstreamSkiserviceAPI.Models
 {
+    /// <summary>
+    /// Klasse für erstellen von Datenbanken
+    /// </summary>
     public class RegistrationContext : DbContext
     {
         private readonly IConfiguration _config;
+
+        /// <summary>
+        /// Leerer Konstruktor
+        /// </summary>
         public RegistrationContext()
         {
             
         }
 
+        /// <summary>
+        /// Konstruktor für instanziierung
+        /// </summary>
+        /// <param name="options"></param>
+        /// <param name="config"></param>
         public RegistrationContext(DbContextOptions<RegistrationContext> options, IConfiguration config)
             : base(options)
         {

@@ -4,15 +4,28 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JetstreamSkiserviceAPI.Services
 {
+    /// <summary>
+    /// Status Service für abrufen von Registrationen nach Status
+    /// </summary>
     public class StatusServiceSQL : IStatusService
     {
         private readonly RegistrationContext _dbContext;
         public List<Status> Status = new List<Status>();
 
+        /// <summary>
+        /// Konstruktor für instanziierung von SQL Server verbindung
+        /// </summary>
+        /// <param name="dbContext">RegistrationContext</param>
         public StatusServiceSQL(RegistrationContext dbContext)
         {
             _dbContext = dbContext;
         }
+
+        /// <summary>
+        /// GetAll Methode welche Registrationen, gruppiert nach Status zurückgibt
+        /// </summary>
+        /// <returns>Liste von StatusDTO</returns>
+        /// <exception cref="Exception"></exception>
         public List<StatusDTO> GetAll()
         {
             try
@@ -22,12 +35,14 @@ namespace JetstreamSkiserviceAPI.Services
 
                 List<StatusDTO> result = new List<StatusDTO>();
 
+                // ForEach für abrufen von Status (StatusName, StatusId)
                 foreach (var s in Status)
                 {
                     var status = new StatusDTO();
                     status.status_id = s.status_id;
                     status.status_name = s.status_name;
 
+                    // ForEach von abrufen von Registrationen für jeden Status (Registrationen)
                     foreach (var r in s.registrations)
                     {
                         RegistrationDTO rdto = new RegistrationDTO();
@@ -57,13 +72,21 @@ namespace JetstreamSkiserviceAPI.Services
             }
         }
 
+        /// <summary>
+        /// GetStatus Methode welche Registrationen, nach spezifischem Status ausgibt
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns>StatusDTO</returns>
+        /// <exception cref="Exception"></exception>
         public StatusDTO GetStatus(string status)
         {
             try
             {
-                List<StatusDTO> t = GetAll();
+                // GetAll abruf
+                List<StatusDTO> reg = GetAll();
 
-                StatusDTO result = t.Find(p => p.status_name == status);
+                // Abrufen von Registrationen nach spezifischem Status
+                StatusDTO result = reg.Find(p => p.status_name == status);
 
                 return result;
             }

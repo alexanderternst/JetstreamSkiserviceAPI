@@ -9,17 +9,32 @@ using System.Text;
 
 namespace JWTAuthentication.Services
 {
-	public class TokenService : ITokenService
+    /// <summary>
+    /// Token Service (User) für erstellen von JWT Token/abrufen von Usern
+    /// </summary>
+    public class TokenService : ITokenService
 	{
         private readonly RegistrationContext _dbContext;
-        //Injecting IConfiguration into this class in order to read Token Key from the configuration file
         private readonly SymmetricSecurityKey _key;
+
+		/// <summary>
+		/// Konstruktor für instanziierung von SQL Server vebindung/Konfiguration (appsettings file)
+		/// </summary>
+		/// <param name="config"></param>
+		/// <param name="dbContext"></param>
 		public TokenService(IConfiguration config, RegistrationContext dbContext)
 		{
             _dbContext = dbContext;
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]));
         }
 
+		/// <summary>
+		/// Methode CreateToken für kreieren von JWT Token
+		/// Hier setzen wir die gültigkeitsdauer des JWT Token auf einen Tag
+		/// </summary>
+		/// <param name="username">username</param>
+		/// <returns></returns>
+		/// <exception cref="Exception"></exception>
 		public string CreateToken(string username)
 		{
 			try
@@ -54,6 +69,11 @@ namespace JWTAuthentication.Services
             }
         }
 
+		/// <summary>
+		/// Methode Login für abrufen von Usern
+		/// </summary>
+		/// <returns>Liste von Usern</returns>
+		/// <exception cref="Exception"></exception>
 		public List<Users> Login()
 		{
 			try
@@ -68,14 +88,19 @@ namespace JWTAuthentication.Services
             }
 		}
 
+		/// <summary>
+		/// Methode Counter um den counter eines Users +1 zu setzen
+		/// </summary>
+		/// <param name="userid"></param>
+		/// <exception cref="Exception"></exception>
 		public void Counter(int userid)
 		{
 			try
 			{
-				Users u = new Users();
-				u = _dbContext.Users.Where(u => u.user_id == userid).FirstOrDefault();
-				u.counter = u.counter + 1;
-				_dbContext.Entry(u).State = EntityState.Modified;
+				Users user = new Users();
+                user = _dbContext.Users.Where(u => u.user_id == userid).FirstOrDefault();
+                user.counter = user.counter + 1;
+				_dbContext.Entry(user).State = EntityState.Modified;
 				_dbContext.SaveChanges();
 			}
             catch (Exception ex)
@@ -84,23 +109,32 @@ namespace JWTAuthentication.Services
             }
         }
 
+		/// <summary>
+		/// Methode unban welchen User auf 0 setzt (Counter auf 0 setzen)
+		/// </summary>
+		/// <param name="userid"></param>
+		/// <exception cref="Exception"></exception>
 		public void Unban(int userid)
 		{
 			try
 			{
-				Users u = new Users();
-				u = _dbContext.Users.Where(u => u.user_id == userid).FirstOrDefault();
-				u.counter = 0;
-				_dbContext.Entry(u).State = EntityState.Modified;
+				Users user = new Users();
+                user = _dbContext.Users.Where(u => u.user_id == userid).FirstOrDefault();
+                user.counter = 0;
+				_dbContext.Entry(user).State = EntityState.Modified;
 				_dbContext.SaveChanges();
 			}
             catch (Exception ex)
             {
-				// hallo....
                 throw new Exception(ex.Message);
             }
         }
 
+		/// <summary>
+		/// Methode GetUsers für das abrufen von allen Usern
+		/// </summary>
+		/// <returns>Liste von Usern</returns>
+		/// <exception cref="Exception"></exception>
 		public List<Users> GetUsers()
 		{
 			try
@@ -111,7 +145,7 @@ namespace JWTAuthentication.Services
 				{
 					user_id = e.user_id,
 					username = e.username,
-					password = "hidden",
+					password = null,
 					counter = e.counter
 				}));
 				return result;

@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JetstreamSkiserviceAPI.Controllers
 {
+    /// <summary>
+    /// Controller von abrufen von Registrationen nach Status
+    /// </summary>
     [ApiController]
     [Authorize]
     [Route("api/[controller]")]
@@ -13,12 +16,21 @@ namespace JetstreamSkiserviceAPI.Controllers
         private IStatusService _statusService;
         private readonly ILogger<StatusController> _logger;
 
+        /// <summary>
+        /// Konstruktor für instanziierung von Interface und Logger
+        /// </summary>
+        /// <param name="status">Interface Service</param>
+        /// <param name="logger">Interface Logger</param>
         public StatusController(IStatusService status, ILogger<StatusController> logger)
         {
             _statusService = status;
             _logger = logger;
         }
 
+        /// <summary>
+        /// GetAll Methode welche Service aufruft
+        /// </summary>
+        /// <returns>Liste von StatusDTO</returns>
         [HttpGet]
         public ActionResult<List<StatusDTO>> GetAll()
         {
@@ -33,6 +45,11 @@ namespace JetstreamSkiserviceAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// GetByStatus Methode welche Service aufruft
+        /// </summary>
+        /// <param name="status">status</param>
+        /// <returns>StatusDTO</returns>
         [HttpGet("{status}")]
         public ActionResult<StatusDTO> GetByStatus(string status)
         {

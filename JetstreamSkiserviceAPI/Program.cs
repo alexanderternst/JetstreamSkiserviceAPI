@@ -8,22 +8,26 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using JWTAuthentication.Services;
 using Microsoft.OpenApi.Models;
 
+// --- Datenbank erstellen ---
 // Add-Migration InitialCreate
 // Update-Database
 
-// Updates
+// --- Datenbank updaten ---
 // Add-Migration LimitStrings
 // Update-Database
 
 namespace AspNetCoreWebApi6
 {
+    /// <summary>
+    /// Klasse wo Programm startet
+    /// </summary>
     public class Program
     {
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // SQL Verbindung
+            // SQL verbindung herstellen
             builder.Services.AddDbContext<RegistrationContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("RegistrationDB")));
 
@@ -33,24 +37,26 @@ namespace AspNetCoreWebApi6
                 .Enrich.FromLogContext()
                 .CreateLogger();
 
+            // Logger instanziieren
             builder.Logging.ClearProviders();
             builder.Logging.AddSerilog(loggerFromSettings);
 
-            // configure DI for application services
+            // DI (Dependency Injection) konfigurieren
             builder.Services.AddScoped<IRegistrationService, RegistrationServiceSQL>();
             builder.Services.AddScoped<IStatusService, StatusServiceSQL>();
             builder.Services.AddScoped<ITokenService, TokenService>();
 
+            // Controller instanziieren
             builder.Services.AddControllers();
 
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            // Swagger/OpenAPI konfigurieren
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Jetstream Skiservice API", Version = "v1" });
             });
 
-            // JWT
+            // JWT konfigurieren
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -67,7 +73,7 @@ namespace AspNetCoreWebApi6
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            // Swagger konfigurieren
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -76,7 +82,7 @@ namespace AspNetCoreWebApi6
 
             app.UseHttpsRedirection();
 
-            // Auth
+            // Authentifikation instanziieren
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -85,6 +91,5 @@ namespace AspNetCoreWebApi6
             app.Run();
 
         }
-
     }
 }

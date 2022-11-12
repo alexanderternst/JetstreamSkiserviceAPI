@@ -2,6 +2,9 @@
 
 namespace JetstreamSkiserviceAPI.Models
 {
+    /// <summary>
+    /// Priority Klasse für Datenbankkreation/Datenbankverbindung
+    /// </summary>
     public class Priority
     {
         [Key]
