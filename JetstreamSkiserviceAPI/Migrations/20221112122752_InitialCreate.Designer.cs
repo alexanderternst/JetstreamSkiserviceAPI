@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JetstreamSkiserviceAPI.Migrations
 {
     [DbContext(typeof(RegistrationContext))]
-    [Migration("20221112103441_InitialCreate")]
+    [Migration("20221112122752_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

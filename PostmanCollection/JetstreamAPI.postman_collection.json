@@ -14,7 +14,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJhbGV4IiwibmJmIjoxNjY4MjUwMDcwLCJleHAiOjE2NjgzMzY0NzAsImlhdCI6MTY2ODI1MDA3MH0.IYZ3Bn4Tgkpf29wWyfpualLqVjfMyw28tD1PKzAgsqzl00DfArO5HN-mc72gjyzdpK2KlriCkjN0sVQCc57Tlw",
 							"type": "string"
 						}
 					]
@@ -53,7 +53,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"registration_id\": 0,\r\n  \"registration_name\": \"Alexander Ernst\",\r\n  \"registration_email\": \"alexander.ernst04@gmail.com\",\r\n  \"registration_phone\": \"0774633593\",\r\n  \"registration_create_date\": \"2022-11-05T12:07:13.153Z\",\r\n  \"registration_pickup_date\": \"2022-11-09T12:07:13.153Z\",\r\n  \"registration_status\": \"Offen\",\r\n  \"registration_priority\": \"Express\",\r\n  \"registration_service\": \"Heisswachsen\"\r\n}\r\n",
+					"raw": "{\r\n  \"registration_id\": 0,\r\n  \"registration_name\": \"Alexander Ernst\",\r\n  \"registration_email\": \"alexander.ernst04@gmail.com\",\r\n  \"registration_phone\": \"0774633593\",\r\n  \"registration_create_date\": \"2022-11-05T12:07:13.153Z\",\r\n  \"registration_pickup_date\": \"2022-11-09T12:07:13.153Z\",\r\n  \"registration_status\": \"abgeschlossen\",\r\n  \"registration_priority\": \"Express\",\r\n  \"registration_service\": \"Heisswachsen\",\r\n  \"registration_comment\": \"no comment\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -83,7 +83,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJhbGV4IiwibmJmIjoxNjY4MjUwMDcwLCJleHAiOjE2NjgzMzY0NzAsImlhdCI6MTY2ODI1MDA3MH0.IYZ3Bn4Tgkpf29wWyfpualLqVjfMyw28tD1PKzAgsqzl00DfArO5HN-mc72gjyzdpK2KlriCkjN0sVQCc57Tlw",
 							"type": "string"
 						}
 					]
@@ -91,7 +91,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:7253/api/Registration/2",
+					"raw": "https://localhost:7253/api/Registration/5",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -100,7 +100,7 @@
 					"path": [
 						"api",
 						"Registration",
-						"2"
+						"5"
 					]
 				}
 			},
@@ -114,7 +114,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJhbGV4IiwibmJmIjoxNjY4MjUwMDcwLCJleHAiOjE2NjgzMzY0NzAsImlhdCI6MTY2ODI1MDA3MH0.IYZ3Bn4Tgkpf29wWyfpualLqVjfMyw28tD1PKzAgsqzl00DfArO5HN-mc72gjyzdpK2KlriCkjN0sVQCc57Tlw",
 							"type": "string"
 						}
 					]
@@ -131,7 +131,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:7253/api/Registration/1",
+					"raw": "https://localhost:7253/api/Registration/6",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -140,7 +140,7 @@
 					"path": [
 						"api",
 						"Registration",
-						"1"
+						"6"
 					]
 				}
 			},
@@ -154,7 +154,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJhbGV4IiwibmJmIjoxNjY4MjUwMDcwLCJleHAiOjE2NjgzMzY0NzAsImlhdCI6MTY2ODI1MDA3MH0.IYZ3Bn4Tgkpf29wWyfpualLqVjfMyw28tD1PKzAgsqzl00DfArO5HN-mc72gjyzdpK2KlriCkjN0sVQCc57Tlw",
 							"type": "string"
 						}
 					]
@@ -162,7 +162,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:7253/api/Registration/1",
+					"raw": "https://localhost:7253/api/Registration/6",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -171,7 +171,7 @@
 					"path": [
 						"api",
 						"Registration",
-						"1"
+						"6"
 					]
 				}
 			},
@@ -185,7 +185,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJhbGV4IiwibmJmIjoxNjY4MjUwMDcwLCJleHAiOjE2NjgzMzY0NzAsImlhdCI6MTY2ODI1MDA3MH0.IYZ3Bn4Tgkpf29wWyfpualLqVjfMyw28tD1PKzAgsqzl00DfArO5HN-mc72gjyzdpK2KlriCkjN0sVQCc57Tlw",
 							"type": "string"
 						}
 					]
@@ -215,7 +215,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJhbGV4IiwibmJmIjoxNjY4MjUwMDcwLCJleHAiOjE2NjgzMzY0NzAsImlhdCI6MTY2ODI1MDA3MH0.IYZ3Bn4Tgkpf29wWyfpualLqVjfMyw28tD1PKzAgsqzl00DfArO5HN-mc72gjyzdpK2KlriCkjN0sVQCc57Tlw",
 							"type": "string"
 						}
 					]
@@ -223,7 +223,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:7253/api/Status/Offen",
+					"raw": "https://localhost:7253/api/Status/abgeschlossen",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -232,7 +232,7 @@
 					"path": [
 						"api",
 						"Status",
-						"Offen"
+						"abgeschlossen"
 					]
 				}
 			},
@@ -279,7 +279,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJhbGV4IiwibmJmIjoxNjY4MjUwMDcwLCJleHAiOjE2NjgzMzY0NzAsImlhdCI6MTY2ODI1MDA3MH0.IYZ3Bn4Tgkpf29wWyfpualLqVjfMyw28tD1PKzAgsqzl00DfArO5HN-mc72gjyzdpK2KlriCkjN0sVQCc57Tlw",
 							"type": "string"
 						}
 					]
@@ -311,7 +311,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJhbGV4IiwibmJmIjoxNjY4MjUwMDcwLCJleHAiOjE2NjgzMzY0NzAsImlhdCI6MTY2ODI1MDA3MH0.IYZ3Bn4Tgkpf29wWyfpualLqVjfMyw28tD1PKzAgsqzl00DfArO5HN-mc72gjyzdpK2KlriCkjN0sVQCc57Tlw",
 							"type": "string"
 						}
 					]
