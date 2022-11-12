@@ -1,5 +1,4 @@
 ﻿using JetstreamSkiserviceAPI.DTO;
-using JetstreamSkiserviceAPI.Models;
 using JetstreamSkiserviceAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

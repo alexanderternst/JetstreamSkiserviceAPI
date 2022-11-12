@@ -1,18 +1,16 @@
-﻿using JetstreamSkiserviceAPI.DTO;
-using JetstreamSkiserviceAPI.Models;
+﻿using JetstreamSkiserviceAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.Collections.Immutable;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
 namespace JWTAuthentication.Services
 {
-    /// <summary>
-    /// Token Service (User) für erstellen von JWT Token/abrufen von Usern
-    /// </summary>
-    public class TokenService : ITokenService
+	/// <summary>
+	/// Token Service (User) für erstellen von JWT Token/abrufen von Usern
+	/// </summary>
+	public class TokenService : ITokenService
 	{
         private readonly RegistrationContext _dbContext;
         private readonly SymmetricSecurityKey _key;
