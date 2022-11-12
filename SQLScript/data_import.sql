@@ -58,6 +58,6 @@ GO
 Anleitung User Permissions:
 1. Databases > Security > Logins > User (JetstreamSki)
 2. Rechtsklick auf User > Properties
-3. User Mapping > Database (Registration) anclicken
-4. db_owner, db_datawriter und db_datareader anclicken
+3. User Mapping > Database (Registration) anklicken
+4. db_owner, db_datawriter und db_datareader anklicken
 */
