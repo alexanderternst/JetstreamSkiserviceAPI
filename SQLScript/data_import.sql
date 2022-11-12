@@ -40,3 +40,16 @@ GO
 
 select * from dbo.Users;
 GO
+
+USE master;
+GO
+
+CREATE LOGIN JetstreamSki
+    WITH PASSWORD = 'Jetstream22_23Ski';
+GO
+
+USE Registration;
+GO
+
+CREATE USER JetstreamSki FOR LOGIN JetstreamSki;  
+GO 
