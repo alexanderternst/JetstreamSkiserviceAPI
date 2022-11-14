@@ -13,4 +13,6 @@ Für die Authentifikations von Admins habe ich ein JWT Token welches einen Tag g
 
 ## Mehr Informationen
 
-Wenn Sie mehr Informationen zu diesem Projekt wollen können Sie die Projektdokumentation nach IPERKA im GitHub nachsehen.
+Wenn Sie mehr Informationen zu diesem Projekt wollen können Sie die Projektdokumentation nach IPERKA im GitHub nachlesen.  
+Wenn Sie mehr Informationen zu diesem Web API wollen, können Sie die Swagger Dokumentation durch Visual Studio nachlesen.  
+Um das Web API Projekt zu debuggen können Sie die Postman Collection verwenden.
