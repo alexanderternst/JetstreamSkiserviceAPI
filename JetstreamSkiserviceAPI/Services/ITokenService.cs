@@ -1,4 +1,5 @@
-﻿using JetstreamSkiserviceAPI.Models;
+﻿using JetstreamSkiserviceAPI.DTO;
+using JetstreamSkiserviceAPI.Models;
 
 namespace JWTAuthentication.Services
 {
@@ -15,7 +16,7 @@ namespace JWTAuthentication.Services
 
 		void Unban(int userid);
 
-		List<Users> GetUsers();
+		List<AuthDTO> GetUsers();
 
     }
 }

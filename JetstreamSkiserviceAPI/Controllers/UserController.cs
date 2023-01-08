@@ -53,7 +53,7 @@ namespace JetstreamSkiserviceAPI.Controllers
                         }
                         else
                         {
-                            return new JsonResult(new { userName = user.username, token = _tokenService.CreateToken(user.username) });
+                            return new JsonResult(new { user_username = user.username, token = _tokenService.CreateToken(user.username) });
                         }
                     }
                     else if (user.username == use.username && user.password != use.password)
@@ -106,8 +106,9 @@ namespace JetstreamSkiserviceAPI.Controllers
         /// GetAll Methode welche alle User über Interface/Service abruft
         /// </summary>
         /// <returns>Liste von Usern</returns>
+
         [HttpGet]
-        public ActionResult<List<Users>> GetAll()
+        public ActionResult<List<AuthDTO>> GetAll()
         {
             try
             {

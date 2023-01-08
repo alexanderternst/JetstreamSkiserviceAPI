@@ -1,4 +1,5 @@
-﻿using JetstreamSkiserviceAPI.Models;
+﻿using JetstreamSkiserviceAPI.DTO;
+using JetstreamSkiserviceAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -133,15 +134,15 @@ namespace JWTAuthentication.Services
 		/// </summary>
 		/// <returns>Liste von Usern</returns>
 		/// <exception cref="Exception"></exception>
-		public List<Users> GetUsers()
+		public List<AuthDTO> GetUsers()
 		{
 			try
 			{
 				List<Users> users = _dbContext.Users.ToList();
-				List<Users> result = new List<Users>();
-				users.ForEach(e => result.Add(new Users()
+				List<AuthDTO> result = new List<AuthDTO>();
+				users.ForEach(e => result.Add(new AuthDTO()
 				{
-					user_id = e.user_id,
+					id = e.user_id,
 					username = e.username,
 					password = null,
 					counter = e.counter
