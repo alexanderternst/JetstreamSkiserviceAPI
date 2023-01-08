@@ -30,8 +30,7 @@ namespace JetstreamSkiserviceAPI.Services
         {
             try
             {
-
-                Status = _dbContext.Status.Include("registrations").Include("registrations.Priority").Include("registrations.Service").ToList();
+                Status = _dbContext.Status.Include("Registrations").Include("Registrations.Priority").Include("Registrations.Service").ToList();
 
                 List<StatusDTO> result = new List<StatusDTO>();
 
