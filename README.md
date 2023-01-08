@@ -6,13 +6,13 @@ Zusätzlich muss die Datenbank aus mehreren Relationalen Datenbanken bestehen.
 
 ## Durchsetzung
 
-Dieses Projekt habe ich mit C# durchgesetzt, für die Datenbankerstellung habe ich ein Code-First Prinzip und einen TSQL Skript verwendet.  
-Für die Auslesung der Datenbank habe ich das Entity Framework verwendet.  
+Dieses Projekt habe ich mit C# durchgesetzt, und für die Datenbankerstellung habe ich einen Code-First Ansatz (Entity Framework) und einen TSQL Skript verwendet.  
+Für die Auslesung der Datenbank habe ich auch das Entity Framework verwendet.  
 Zuletzt habe ich für die Durchsetzung des Web APIs Services und Dependency Injection (DI) verwendet.  
 Für die Authentifikation von Admins habe ich ein JWT Token, welches einen Tag gültig ist, verwendet.  
 
-## Mehr Informationen
+## Weitere Informationen
 
-Wenn Sie mehr Informationen zu diesem Projekt wollen, können Sie die Projektdokumentation nach IPERKA im GitHub nachlesen.  
+Wenn Sie weitere Informationen zu diesem Projekt wollen, können Sie die Projektdokumentation nach IPERKA im GitHub nachlesen.  
 Wenn Sie mehr Informationen zu diesem Web API wollen, können Sie die Swagger Dokumentation durch Visual Studio nachlesen.  
-Um das Web API Projekt zu debuggen, können Sie die Postman Collection verwenden.
+Um das Web API Projekt zu testen, können Sie die Postman Collection verwenden.
