@@ -37,7 +37,7 @@ namespace JetstreamSkiserviceAPI.Controllers
         /// <returns>ActionResult</returns>
         [AllowAnonymous]
         [HttpPost("login")]
-        public ActionResult Login([FromBody] UserDTO user)
+        public ActionResult Login([FromBody] AuthentificationDTO user)
         {
             try
             {
@@ -45,27 +45,27 @@ namespace JetstreamSkiserviceAPI.Controllers
 
                 foreach (Users use in Users)
                 {
-                    if (user.username == use.username && user.password == use.password)
+                    if (user.Username == use.Username && user.Password == use.Password)
                     {
-                        if (use.counter >= 3)
+                        if (use.Counter >= 3)
                         {
                             return Unauthorized("This user seems to have been banned. Please contact our support team.");
                         }
                         else
                         {
-                            return new JsonResult(new { user_username = user.username, token = _tokenService.CreateToken(user.username) });
+                            return new JsonResult(new { user_username = user.Username, token = _tokenService.CreateToken(user.Username) });
                         }
                     }
-                    else if (user.username == use.username && user.password != use.password)
+                    else if (user.Username == use.Username && user.Password != use.Password)
                     {
-                        if (use.counter >= 3)
+                        if (use.Counter >= 3)
                         {
                             return Unauthorized("This user seems to have been banned. Please contact our support team.");
                         }
                         else
                         {
-                            _tokenService.Counter(use.user_id);
-                            return Unauthorized($"Invalid Credentials. {3 - use.counter} attepts left");
+                            _tokenService.Counter(use.Id);
+                            return Unauthorized($"Invalid Credentials. {3 - use.Counter} attepts left");
                         }
                     }
                     else
@@ -108,7 +108,7 @@ namespace JetstreamSkiserviceAPI.Controllers
         /// <returns>Liste von Usern</returns>
 
         [HttpGet]
-        public ActionResult<List<AuthDTO>> GetAll()
+        public ActionResult<List<UserDTO>> GetAll()
         {
             try
             {

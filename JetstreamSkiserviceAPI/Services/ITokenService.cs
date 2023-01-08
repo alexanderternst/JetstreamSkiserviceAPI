@@ -16,7 +16,7 @@ namespace JWTAuthentication.Services
 
 		void Unban(int userid);
 
-		List<AuthDTO> GetUsers();
+		List<UserDTO> GetUsers();
 
     }
 }

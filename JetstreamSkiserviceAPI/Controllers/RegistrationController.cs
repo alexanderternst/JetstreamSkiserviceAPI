@@ -80,7 +80,7 @@ namespace JetstreamSkiserviceAPI.Controllers
             try
             {
                 _registrationService.Add(registration);
-                return CreatedAtAction(nameof(Create), new { id = registration.id }, registration);
+                return CreatedAtAction(nameof(Create), new { id = registration.Id }, registration);
             }
             catch (Exception ex)
             {
@@ -127,16 +127,16 @@ namespace JetstreamSkiserviceAPI.Controllers
                 if (reg == null)
                     return NotFound();
 
-                reg.name = registration.name;
-                reg.email = registration.email;
-                reg.phone = registration.phone;
-                reg.create_date = registration.create_date;
-                reg.pickup_date = registration.pickup_date;
+                reg.Name = registration.Name;
+                reg.Email = registration.Email;
+                reg.Phone = registration.Phone;
+                reg.CreateDate = registration.CreateDate;
+                reg.PickupDate = registration.PickupDate;
 
-                reg.status = registration.status;
-                reg.service = registration.service;
-                reg.priority = registration.priority;
-                reg.comment = registration.comment;
+                reg.Status = registration.Status;
+                reg.Service = registration.Service;
+                reg.Priority = registration.Priority;
+                reg.Comment = registration.Comment;
 
                 _registrationService.Update(reg);
 

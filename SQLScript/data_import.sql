@@ -1,13 +1,14 @@
 use Registration;
 GO
 
-INSERT INTO dbo.Priority (priority_name)
+/*
+INSERT INTO dbo.Priority (Priority_name)
 VALUES ('Tief'),
 ('Standard'),
 ('Express');
 GO
 
-INSERT INTO dbo.Service(service_name)
+INSERT INTO dbo.Service(Service_name)
 VALUES ('Kleiner-Service'),
 ('Grosser-Service'),
 ('Rennski-Service'),
@@ -16,15 +17,16 @@ VALUES ('Kleiner-Service'),
 ('Heisswachsen');
 GO
 
-INSERT INTO dbo.Status(status_name)
+INSERT INTO dbo.Status(Status_name)
 VALUES ('Offen'),
 ('InArbeit'),
 ('abgeschlossen');
 GO
 
-INSERT INTO dbo.Users (username, password, counter)
+INSERT INTO dbo.Users (Username, Password, Counter)
 VALUES ('alex', 'test123', 0);
 GO
+*/
 
 select * from dbo.Status;
 GO
@@ -41,6 +43,7 @@ GO
 select * from dbo.Users;
 GO
 
+/*
 USE master;
 GO
 
@@ -53,6 +56,7 @@ GO
 
 CREATE USER JetstreamSki FOR LOGIN JetstreamSki;  
 GO
+*/
 
 /*
 Anleitung User Permissions:

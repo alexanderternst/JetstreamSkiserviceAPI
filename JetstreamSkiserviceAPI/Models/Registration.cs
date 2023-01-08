@@ -8,26 +8,26 @@ namespace JetstreamSkiserviceAPI.Models
     public class Registration
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [StringLength(255)]
-        public string name { get; set; }
+        public string? Name { get; set; }
 
         [StringLength(255)]
-        public string email { get; set; }
+        public string? Email { get; set; }
 
         [StringLength(255)]
-        public string phone { get; set; }
+        public string? Phone { get; set; }
 
-        public DateTime create_date { get; set; }
+        public DateTime Create_date { get; set; }
 
-        public DateTime pickup_date { get; set; }
+        public DateTime Pickup_date { get; set; }
 
         [StringLength(255)]
-        public string comment { get; set; }
+        public string? Comment { get; set; }
 
-        public Status Status { get; set; }
-        public Priority Priority { get; set; }
-        public Service Service { get; set; }
+        public Status? Status { get; set; }
+        public Priority? Priority { get; set; }
+        public Service? Service { get; set; }
     }
 }

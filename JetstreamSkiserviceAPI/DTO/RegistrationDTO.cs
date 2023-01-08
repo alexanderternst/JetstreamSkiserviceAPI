@@ -8,33 +8,33 @@ namespace JetstreamSkiserviceAPI.DTO
     public class RegistrationDTO
     {
         [JsonPropertyName("registration_id")]
-        public int id { get; set; }
+        public int? Id { get; set; }
 
         [JsonPropertyName("registration_name")]
-        public string name { get; set; }
+        public string? Name { get; set; }
 
         [JsonPropertyName("registration_email")]
-        public string email { get; set; }
+        public string? Email { get; set; }
 
         [JsonPropertyName("registration_phone")]
-        public string phone { get; set; }
+        public string? Phone { get; set; }
 
         [JsonPropertyName("registration_create_date")]
-        public DateTime create_date { get; set; }
+        public DateTime CreateDate { get; set; }
 
         [JsonPropertyName("registration_pickup_date")]
-        public DateTime pickup_date { get; set; }
+        public DateTime PickupDate { get; set; }
 
         [JsonPropertyName("registration_status")]
-        public string status { get; set; }
+        public string? Status { get; set; }
 
         [JsonPropertyName("registration_priority")]
-        public string priority { get; set; }
+        public string? Priority { get; set; }
 
         [JsonPropertyName("registration_service")]
-        public string service { get; set; }
+        public string? Service { get; set; }
 
         [JsonPropertyName("registration_comment")]
-        public string comment { get; set; }
+        public string? Comment { get; set; }
     }
 }

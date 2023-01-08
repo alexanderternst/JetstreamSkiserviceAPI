@@ -8,14 +8,14 @@ namespace JetstreamSkiserviceAPI.Models
     public class Users
     {
         [Key]
-        public int user_id { get; set; }
+        public int Id { get; set; }
 
         [StringLength(255)]
-        public string username { get; set; }
+        public string? Username { get; set; }
 
         [StringLength(255)]
-        public string password { get; set; }
+        public string? Password { get; set; }
 
-        public int counter { get; set; }
+        public int? Counter { get; set; }
     }
 }

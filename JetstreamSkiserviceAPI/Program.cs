@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using JWTAuthentication.Services;
 using Microsoft.OpenApi.Models;
 
+// Tools > NuGet Package Manager > Package Manager Console
 // --- Datenbank erstellen ---
 // Add-Migration InitialCreate
 // Update-Database

@@ -36,16 +36,16 @@ namespace JetstreamSkiserviceAPI.Services
                 List<RegistrationDTO> result = new List<RegistrationDTO>();
                 registrations.ForEach(e => result.Add(new RegistrationDTO()
                 {
-                    id = e.id,
-                    name = e.name,
-                    email = e.email,
-                    phone = e.phone,
-                    create_date = e.create_date,
-                    pickup_date = e.pickup_date,
-                    status = e.Status.status_name,
-                    priority = e.Priority.priority_name,
-                    service = e.Service.service_name,
-                    comment = e.comment,
+                    Id = e.Id,
+                    Name = e.Name,
+                    Email = e.Email,
+                    Phone = e.Phone,
+                    CreateDate = e.Create_date,
+                    PickupDate = e.Pickup_date,
+                    Status = e.Status.Status_name,
+                    Priority = e.Priority.Priority_name,
+                    Service = e.Service.Service_name,
+                    Comment = e.Comment,
                 }));
 
                 return result;
@@ -68,23 +68,23 @@ namespace JetstreamSkiserviceAPI.Services
             {
                 List<RegistrationDTO> e = GetAll();
 
-                RegistrationDTO reg = e.Find(p => p.id == id);
+                RegistrationDTO reg = e.Find(p => p.Id == id);
 
                 if (reg == null)
                     throw new Exception("Item does not exist");
 
                 return new RegistrationDTO()
                 {
-                    id = reg.id,
-                    name = reg.name,
-                    phone = reg.phone,
-                    email = reg.email,
-                    create_date = reg.create_date,
-                    pickup_date = reg.pickup_date,
-                    service = reg.service,
-                    priority = reg.priority,
-                    status = reg.status,
-                    comment = reg.comment,
+                    Id = reg.Id,
+                    Name = reg.Name,
+                    Phone = reg.Phone,
+                    Email = reg.Email,
+                    CreateDate = reg.CreateDate,
+                    PickupDate = reg.PickupDate,
+                    Service = reg.Service,
+                    Priority = reg.Priority,
+                    Status = reg.Status,
+                    Comment = reg.Comment,
                 };
             }
             catch (Exception ex)
@@ -104,15 +104,15 @@ namespace JetstreamSkiserviceAPI.Services
             {
                 Registration reg = new Registration()
                 {
-                    name = registration.name,
-                    email = registration.email,
-                    phone = registration.phone,
-                    create_date = registration.create_date,
-                    pickup_date = registration.pickup_date,
-                    Status = _dbContext.Status.FirstOrDefault(e => e.status_name == registration.status),
-                    Priority = _dbContext.Priority.FirstOrDefault(e => e.priority_name == registration.priority),
-                    Service = _dbContext.Service.FirstOrDefault(e => e.service_name == registration.service),
-                    comment = registration.comment
+                    Name = registration.Name,
+                    Email = registration.Email,
+                    Phone = registration.Phone,
+                    Create_date = registration.CreateDate,
+                    Pickup_date = registration.PickupDate,
+                    Status = _dbContext.Status.FirstOrDefault(e => e.Status_name == registration.Status),
+                    Priority = _dbContext.Priority.FirstOrDefault(e => e.Priority_name == registration.Priority),
+                    Service = _dbContext.Service.FirstOrDefault(e => e.Service_name == registration.Service),
+                    Comment = registration.Comment
                 };
 
                 _dbContext.Add(reg);
@@ -153,18 +153,18 @@ namespace JetstreamSkiserviceAPI.Services
         {
             try
             {
-                var reg = _dbContext.Registrations.Where(e => e.id == registration.id).FirstOrDefault();
+                var reg = _dbContext.Registrations.Where(e => e.Id == registration.Id).FirstOrDefault();
                 if (reg != null)
                 {
-                    reg.name = registration.name;
-                    reg.email = registration.email;
-                    reg.phone = registration.phone;
-                    reg.create_date = registration.create_date;
-                    reg.pickup_date = registration.pickup_date;
-                    reg.Status = _dbContext.Status.FirstOrDefault(e => e.status_name == registration.status);
-                    reg.Priority = _dbContext.Priority.FirstOrDefault(e => e.priority_name == registration.priority);
-                    reg.Service = _dbContext.Service.FirstOrDefault(e => e.service_name == registration.service);
-                    reg.comment = registration.comment;
+                    reg.Name = registration.Name;
+                    reg.Email = registration.Email;
+                    reg.Phone = registration.Phone;
+                    reg.Create_date = registration.CreateDate;
+                    reg.Pickup_date = registration.PickupDate;
+                    reg.Status = _dbContext.Status.FirstOrDefault(e => e.Status_name == registration.Status);
+                    reg.Priority = _dbContext.Priority.FirstOrDefault(e => e.Priority_name == registration.Priority);
+                    reg.Service = _dbContext.Service.FirstOrDefault(e => e.Service_name == registration.Service);
+                    reg.Comment = registration.Comment;
                 }
 
                 _dbContext.Entry(reg).State = EntityState.Modified;

@@ -97,8 +97,8 @@ namespace JWTAuthentication.Services
 			try
 			{
 				Users user = new Users();
-                user = _dbContext.Users.Where(u => u.user_id == userid).FirstOrDefault();
-                user.counter = user.counter + 1;
+                user = _dbContext.Users.Where(u => u.Id == userid).FirstOrDefault();
+                user.Counter = user.Counter + 1;
 				_dbContext.Entry(user).State = EntityState.Modified;
 				_dbContext.SaveChanges();
 			}
@@ -118,8 +118,8 @@ namespace JWTAuthentication.Services
 			try
 			{
 				Users user = new Users();
-                user = _dbContext.Users.Where(u => u.user_id == userid).FirstOrDefault();
-                user.counter = 0;
+                user = _dbContext.Users.Where(u => u.Id == userid).FirstOrDefault();
+                user.Counter = 0;
 				_dbContext.Entry(user).State = EntityState.Modified;
 				_dbContext.SaveChanges();
 			}
@@ -134,18 +134,18 @@ namespace JWTAuthentication.Services
 		/// </summary>
 		/// <returns>Liste von Usern</returns>
 		/// <exception cref="Exception"></exception>
-		public List<AuthDTO> GetUsers()
+		public List<UserDTO> GetUsers()
 		{
 			try
 			{
 				List<Users> users = _dbContext.Users.ToList();
-				List<AuthDTO> result = new List<AuthDTO>();
-				users.ForEach(e => result.Add(new AuthDTO()
+				List<UserDTO> result = new List<UserDTO>();
+				users.ForEach(e => result.Add(new UserDTO()
 				{
-					id = e.user_id,
-					username = e.username,
-					password = null,
-					counter = e.counter
+					Id = e.Id,
+					Username = e.Username,
+					Password = null,
+					Counter = e.Counter
 				}));
 				return result;
 			}

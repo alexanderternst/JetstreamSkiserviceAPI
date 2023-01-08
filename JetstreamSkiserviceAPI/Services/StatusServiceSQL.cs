@@ -39,28 +39,28 @@ namespace JetstreamSkiserviceAPI.Services
                 foreach (var s in Status)
                 {
                     var status = new StatusDTO();
-                    status.status_id = s.status_id;
-                    status.status_name = s.status_name;
+                    status.StatusId = s.Status_id;
+                    status.StatusName = s.Status_name;
 
                     // ForEach von abrufen von Registrationen für jeden Status (Registrationen)
-                    foreach (var r in s.registrations)
+                    foreach (var r in s.Registrations)
                     {
                         RegistrationDTO rdto = new RegistrationDTO();
 
-                        rdto.id = r.id;
-                        rdto.name = r.name;
-                        rdto.email = r.email;
-                        rdto.phone = r.phone;
-                        rdto.create_date = r.create_date;
-                        rdto.pickup_date = r.pickup_date;
+                        rdto.Id = r.Id;
+                        rdto.Name = r.Name;
+                        rdto.Email = r.Email;
+                        rdto.Phone = r.Phone;
+                        rdto.CreateDate = r.Create_date;
+                        rdto.PickupDate = r.Pickup_date;
 
-                        rdto.priority = r.Priority.priority_name;
-                        rdto.service = r.Service.service_name;
-                        rdto.status = s.status_name;
+                        rdto.Priority = r.Priority.Priority_name;
+                        rdto.Service = r.Service.Service_name;
+                        rdto.Status = s.Status_name;
 
-                        rdto.comment = r.comment;
+                        rdto.Comment = r.Comment;
 
-                        status.registration.Add(rdto);
+                        status.Registrations.Add(rdto);
                     }
                     result.Add(status);
                 }
@@ -86,7 +86,7 @@ namespace JetstreamSkiserviceAPI.Services
                 List<StatusDTO> reg = GetAll();
 
                 // Abrufen von Registrationen nach spezifischem Status
-                StatusDTO result = reg.Find(p => p.status_name == status);
+                StatusDTO result = reg.Find(p => p.StatusName == status);
 
                 return result;
             }
