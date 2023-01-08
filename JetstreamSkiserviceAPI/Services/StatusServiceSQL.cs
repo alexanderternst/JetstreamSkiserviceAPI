@@ -85,7 +85,7 @@ namespace JetstreamSkiserviceAPI.Services
                 List<StatusDTO> reg = GetAll();
 
                 // Abrufen von Registrationen nach spezifischem Status
-                StatusDTO result = reg.Find(p => p.StatusName == status);
+                StatusDTO? result = reg.Find(p => p.StatusName == status);
 
                 return result;
             }
